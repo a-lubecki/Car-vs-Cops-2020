@@ -1,20 +1,21 @@
-﻿using UnityEngine;
-using DG.Tweening;
+﻿using System;
+using UnityEngine;
 
 
-public class MainCarBehavior : VehicleBehavior {
+public class EnemyBehavior : VehicleBehavior {
 
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
 
 
     protected override void UpdateInvincibilityDisplay() {
+        //no specific update
+    }
 
-        goModel.GetComponent<Collider>().enabled = !lifeBehavior.isInvincible;
+    public void InitGameManager(GameManager gameManager) {
 
-        ///TODO shader alpha
-        var alpha = lifeBehavior.isInvincible ? 0.2f : 1;
-        goModel.GetComponent<Renderer>().material.DOFade(alpha, 0.5f);
+        this.gameManager = gameManager ?? throw new ArgumentException();
     }
 
     protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
@@ -32,14 +33,17 @@ public class MainCarBehavior : VehicleBehavior {
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
         base.OnCollisionWithCollectible(collectibleBehavior);
 
-        collectibleBehavior.Collect();
+        ///TODO
     }
 
     protected override void OnVehicleExplode() {
         base.OnVehicleExplode();
 
-        //trigger game over when main car has exploded
-        gameManager.StopPlaying();
+        ///TODO delay of the explosion before destroying
+
+        itemDestructorBehavior.DestroyCurrentItem();
+
+        gameManager.OnEnemyExploded();
     }
 
 }

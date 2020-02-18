@@ -1,19 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
-public class EnemyCarBehavior : BaseMainCarBehavior {
+public class EnemyTurnBehavior : BaseTurnBehavior {
 
 
-    [SerializeField] private Transform trTargetToFollow;
+    private Transform trTargetToFollow;
 
 
     public void InitTargetToFollow(Transform trTargetToFollow) {
 
-        this.trTargetToFollow = trTargetToFollow;
+        this.trTargetToFollow = trTargetToFollow ?? throw new ArgumentException();
     }
 
     protected override void Update() {
-        base.Update();
+
+        if (trTargetToFollow == null) {
+            //no target to follow
+            return;
+        }
 
         //calculate the angle between the current moving direction of the car and the line formed by the car and its target
         var direction = trTargetToFollow.position - transform.position;
@@ -36,6 +41,8 @@ public class EnemyCarBehavior : BaseMainCarBehavior {
         } else if (angle < 180) {
             mustRotateRight = true;
         }
+
+        base.Update();
     }
 
 }

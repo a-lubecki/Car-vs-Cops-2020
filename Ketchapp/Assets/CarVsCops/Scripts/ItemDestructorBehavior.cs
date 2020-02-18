@@ -21,8 +21,13 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
         //destroy item if too far from the center
         if (Vector3.Distance(transform.position, trDropPoint.position) > distanceFromCenter) {
-            pool?.Despawn(gameObject);
+            DestroyCurrentItem();
         }
+    }
+
+    public void DestroyCurrentItem() {
+
+        pool?.Despawn(gameObject);
     }
 
 }

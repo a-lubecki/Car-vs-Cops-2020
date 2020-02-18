@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BaseMainCarBehavior : MonoBehaviour {
+public abstract class BaseTurnBehavior : MonoBehaviour {
 
 
     [SerializeField] private float maxRotationAnglePerSec = 200f;

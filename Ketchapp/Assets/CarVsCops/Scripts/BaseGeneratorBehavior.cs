@@ -11,7 +11,7 @@ public class BaseGeneratorBehavior : MonoBehaviour {
     [SerializeField] private float generationDistance;
 
 
-    public List<GameObject> GenerateItems(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public List<GameObject> SpawnObjects(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
 
         if (count <= 0) {
             throw new ArgumentException("Can't generate 0 or less items");
@@ -21,14 +21,14 @@ public class BaseGeneratorBehavior : MonoBehaviour {
 
         for (int i = 0; i < count; i++) {
 
-            var go = GenerateItem(pool, mustFaceGenerationCenter);
+            var go = SpawnObject(pool, mustFaceGenerationCenter);
             res.Add(go);
         }
 
         return res;
     }
 
-    public GameObject GenerateItem(LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public GameObject SpawnObject(LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
 
         if (pool == null) {
             throw new ArgumentException("Can't generate item without pool");

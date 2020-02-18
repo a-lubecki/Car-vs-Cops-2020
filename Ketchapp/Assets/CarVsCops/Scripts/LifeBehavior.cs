@@ -5,6 +5,8 @@ public class LifeBehavior : MonoBehaviour {
 
     [SerializeField] private int maxLife = 3;
     [SerializeField] private int life;
+    public bool isInvincible;
+
 
     public int Life {
         get {
@@ -26,7 +28,7 @@ public class LifeBehavior : MonoBehaviour {
         life = maxLife;
     }
 
-    public bool IsBroken() {
+    public bool IsDead() {
         return life <= 0;
     }
 
@@ -35,6 +37,12 @@ public class LifeBehavior : MonoBehaviour {
     }
 
     public void DecrementLife() {
+
+        if (isInvincible) {
+            //can't lose life
+            return;
+        }
+
         Life--;
     }
 

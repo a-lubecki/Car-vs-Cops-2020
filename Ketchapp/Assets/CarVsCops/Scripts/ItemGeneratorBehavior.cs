@@ -9,16 +9,23 @@ public class ItemGeneratorBehavior : BaseGeneratorBehavior {
     [SerializeField] private LeanGameObjectPool poolPoliceCar;
 
 
-    public List<GameObject> GeneratePoliceCars(int count, GameObject goMainCar) {
+    public List<GameObject> SpawnPoliceCars(int count, GameObject goMainCar) {
 
-        var res = GenerateItems(count, poolPoliceCar, true);
+        var res = SpawnObjects(count, poolPoliceCar, true);
 
         //for all generated cars, init the main car object as the target to follow
         foreach (var goCar in res) {
-            goCar.GetComponent<EnemyCarBehavior>()?.InitTargetToFollow(goMainCar.transform);
+            
+            goCar.GetComponent<EnemyTurnBehavior>()?.InitTargetToFollow(goMainCar.transform);
+            goCar.GetComponent<VehicleBehavior>()?.Show();
         }
 
         return res;
+    }
+
+    public void DespawnAll() {
+
+        poolPoliceCar.DespawnAll();
     }
 
 }
