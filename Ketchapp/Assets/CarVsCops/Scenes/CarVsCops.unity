@@ -714,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 3623641604028752093, guid: eb664de63473c448e93d1cbcec141e71,
         type: 3}
       propertyPath: m_RelativeForce.z
-      value: 900
+      value: 1100
       objectReference: {fileID: 0}
     - target: {fileID: 4400624393149866139, guid: eb664de63473c448e93d1cbcec141e71,
         type: 3}

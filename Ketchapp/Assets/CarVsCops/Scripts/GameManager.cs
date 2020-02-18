@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
         carControlsManager.SetControlsEnabled(true);
 
-        itemGeneratorBehavior.GeneratePoliceCars(4);
+        itemGeneratorBehavior.GeneratePoliceCars(4, goMainCar);
     }
 
     public void StopPlaying() {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
 
@@ -10,18 +11,24 @@ public class BaseGeneratorBehavior : MonoBehaviour {
     [SerializeField] private float generationDistance;
 
 
-    public void GenerateItems(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public List<GameObject> GenerateItems(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
 
         if (count <= 0) {
             throw new ArgumentException("Can't generate 0 or less items");
         }
 
+        var res = new List<GameObject>();
+
         for (int i = 0; i < count; i++) {
-            GenerateItem(pool, mustFaceGenerationCenter);
+
+            var go = GenerateItem(pool, mustFaceGenerationCenter);
+            res.Add(go);
         }
+
+        return res;
     }
 
-    public void GenerateItem(LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public GameObject GenerateItem(LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
 
         if (pool == null) {
             throw new ArgumentException("Can't generate item without pool");
@@ -43,6 +50,8 @@ public class BaseGeneratorBehavior : MonoBehaviour {
 
         //if the item has a destructor behavior, init it
         goItem.GetComponent<ItemDestructorBehavior>()?.Init(pool, trDropPoint);
+
+        return goItem;
     }
 
 }
