@@ -92,11 +92,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3623641604028752093, guid: eb664de63473c448e93d1cbcec141e71,
-        type: 3}
-      propertyPath: m_RelativeForce.z
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 6605734583830019344, guid: eb664de63473c448e93d1cbcec141e71,
         type: 3}
       propertyPath: m_Mesh
