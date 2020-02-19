@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8682259235969142875}
   - component: {fileID: 9116814170399590219}
   m_Layer: 0
-  m_Name: PoolPoliceCar
+  m_Name: Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 9186453250907340488, guid: 6aacc12be6b9a4872b404d8932ac7469, type: 3}
+  prefab: {fileID: 0}
   Notification: 3
   Preload: 0
   Capacity: 0

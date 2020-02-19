@@ -8,6 +8,15 @@ public abstract class VehicleBehavior : MonoBehaviour {
     [SerializeField] protected GameObject goModel;
     [SerializeField] protected LifeBehavior lifeBehavior;
 
+    protected Collider physicsCollider { get; private set; }
+    protected Collider triggerCollider { get; private set; }
+
+
+    void Awake() {
+
+        physicsCollider = GetComponents<Collider>()[0];
+        triggerCollider = GetComponents<Collider>()[1];
+    }
 
     void OnDisable() {
 
@@ -25,7 +34,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
     }
 
-    public void Show() {
+    public void Init() {
 
         goModel.SetActive(true);
         GetComponent<Rigidbody>().isKinematic = false;
@@ -92,6 +101,15 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
 
         var collectibleBehavior = goOther.GetComponent<CollectibleBehavior>();
+        if (collectibleBehavior != null) {
+            OnCollisionWithCollectible(collectibleBehavior);
+        }
+    }
+
+    void OnTriggerEnter(Collider collider) {
+
+        //only the main car can detect collectibles with trigger (when the car is invincible)
+        var collectibleBehavior = collider.GetComponent<CollectibleBehavior>();
         if (collectibleBehavior != null) {
             OnCollisionWithCollectible(collectibleBehavior);
         }

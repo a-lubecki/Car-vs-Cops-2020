@@ -3,6 +3,21 @@
 public abstract class CollectibleBehavior : MonoBehaviour {
 
 
-    public abstract void Collect();
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
+
+
+    public void Collect() {
+
+        Destroy();
+
+        OnCollected();
+    }
+
+    public void Destroy() {
+
+        itemDestructorBehavior.DestroyCurrentItem();
+    }
+
+    protected abstract void OnCollected();
 
 }

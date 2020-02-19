@@ -13,6 +13,45 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &-1277223757940564303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116551171593947969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea5ba5c3b0bf41468131ce3a55eccac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 300
+--- !u!114 &-430500146867793864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116551171593947969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53fce9f7026b94e8da86a613447bbebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDestructorBehavior: {fileID: 926610140891096579}
+--- !u!114 &926610140891096579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116551171593947969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562abe17caeff411d991c3e41e27a357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromCenter: 500
 --- !u!1001 &7961921063603147336
 PrefabInstance:
   m_ObjectHideFlags: 0

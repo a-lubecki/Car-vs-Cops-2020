@@ -9,12 +9,6 @@ public class ObstacleBehavior : MonoBehaviour {
 
     public void Explode() {
 
-        if (!gameObject.activeSelf) {
-            return;
-        }
-
-        gameObject.SetActive(false);
-
         ///TODO explosion
 
         itemDestructorBehavior.DestroyCurrentItem();

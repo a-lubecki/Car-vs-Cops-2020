@@ -5,20 +5,24 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
 
     [SerializeField] private GameObject goMainCar;
-    [SerializeField] private CarControlsManager carControlsManager;
     [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior;
 
-    private VehicleBehavior mainCarVehicleBehavior {
-        get {
-            return goMainCar.GetComponent<VehicleBehavior>();
-        }
-    }
+    private CarControlsManager carControlsManager;
+    private MainCarBehavior mainCarBehavior;
+    private LifeBehavior lifeBehavior;
 
     private bool isPlaying;
     private bool isGameOver;
 
     private int score;///TODO ScoreManager
 
+
+    void Awake() {
+
+        carControlsManager = goMainCar.GetComponent<CarControlsManager>();
+        mainCarBehavior = goMainCar.GetComponent<MainCarBehavior>();
+        lifeBehavior = goMainCar.GetComponent<LifeBehavior>();
+    }
 
     void Start() {
 
@@ -52,11 +56,11 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         //the game object couldn't be deactivated during the car explosion because
         //some elements must be kept in the scene : camera, chasing target, etc
         goMainCar.SetActive(false);
-        mainCarVehicleBehavior.transform.rotation = Quaternion.identity;
-        mainCarVehicleBehavior.transform.position = Vector3.zero;
+        mainCarBehavior.transform.rotation = Quaternion.identity;
+        mainCarBehavior.transform.position = Vector3.zero;
         goMainCar.SetActive(true);
 
-        mainCarVehicleBehavior.Show();
+        mainCarBehavior.Init();
 
         score = 0;
     }
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
         SpawnNewEnemies(4);
         SpawnNewObstacles(30);
+        SpawnNewHeart(1);
     }
 
     public void StopPlaying() {
@@ -98,6 +103,11 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         itemGeneratorBehavior.SpawnObstacles(count, this);
     }
 
+    public void SpawnNewHeart(int count) {
+
+        itemGeneratorBehavior.SpawnNewHearts(count, this, lifeBehavior);
+    }
+
     public void OnItemDestroyed(GameObject goItem) {
 
         var enemyBehavior = goItem.GetComponent<EnemyBehavior>();
@@ -108,6 +118,11 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         var obstacleBehavior = goItem.GetComponent<ObstacleBehavior>();
         if (obstacleBehavior != null) {
             OnObstacleDestroyed(obstacleBehavior);
+        }
+
+        var heartBehavior = goItem.GetComponent<HeartBehavior>();
+        if (heartBehavior != null) {
+            OnHeartDestroyed(heartBehavior);
         }
     }
 
@@ -129,6 +144,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         }
 
         SpawnNewObstacles(1);
+    }
+
+    private void OnHeartDestroyed(HeartBehavior heartBehavior) {
+
+        if (!isPlaying) {
+            return;
+        }
+
+        SpawnNewHeart(1);
     }
 
 }

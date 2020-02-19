@@ -28,6 +28,19 @@ MonoBehaviour:
   goModel: {fileID: 3666384346651066639}
   lifeBehavior: {fileID: 1026921830065072640}
   gameManager: {fileID: 0}
+--- !u!114 &-8937324591223280223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189146773747086421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef74d7cb9184c4f07aedbbd89dbfdea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goListener: {fileID: 0}
 --- !u!1001 &6309685176541445612
 PrefabInstance:
   m_ObjectHideFlags: 0
