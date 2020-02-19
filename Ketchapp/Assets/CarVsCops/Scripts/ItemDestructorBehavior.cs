@@ -8,13 +8,23 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
     private LeanGameObjectPool pool;
     private Transform trDropPoint;
-    [SerializeField] private float distanceFromCenter = 1000;
+    [SerializeField] private float distanceFromCenter = 500;
+    private IItemDestructorBehaviorListener listener;
+    ///a boolean indicating that the object is destroying and can't call the destroy method again
+    private bool isDestroying;
 
 
-    public void Init(LeanGameObjectPool pool, Transform trDropPoint) {
+    public void Init(LeanGameObjectPool pool, Transform trDropPoint, IItemDestructorBehaviorListener listener) {
 
         this.pool = pool;
         this.trDropPoint = trDropPoint;
+        this.listener = listener;
+    }
+
+    void OnDisable() {
+
+        isDestroying = false;
+        listener = null;
     }
 
     void Update() {
@@ -27,7 +37,27 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
     public void DestroyCurrentItem() {
 
-        pool?.Despawn(gameObject);
+        if (isDestroying) {
+            //the DestroyCurrentItem() has already been called, it can be cause by a recursion loop due to the previous listener notify
+            return;
+        }
+
+        isDestroying = true;
+
+        //notify the listener before despawning to be able to get info about the object in the OnItemDestroyed()
+        listener?.OnItemDestroyed(gameObject);
+
+        //avoid destroying if the OnDisable has been called by the listener notify
+        if (isDestroying) {
+            pool?.Despawn(gameObject);
+        }
     }
+
+}
+
+
+public interface IItemDestructorBehaviorListener {
+
+    void OnItemDestroyed(GameObject goItem);
 
 }

@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 2346674627945733201, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_RelativeForce.z
-      value: 800
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 3346530181881115846, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
@@ -150,6 +150,7 @@ PrefabInstance:
     - {fileID: 8778617289127698181, guid: 6e083a7090dba48c483685782986ffb8, type: 3}
     - {fileID: 5504940182398752452, guid: 6e083a7090dba48c483685782986ffb8, type: 3}
     - {fileID: 5262071798526511162, guid: 6e083a7090dba48c483685782986ffb8, type: 3}
+    - {fileID: -3330739975558968240, guid: 6e083a7090dba48c483685782986ffb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6e083a7090dba48c483685782986ffb8, type: 3}
 --- !u!1 &6189146773747086421 stripped
 GameObject:

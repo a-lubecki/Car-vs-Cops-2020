@@ -8,10 +8,11 @@ public class BaseGeneratorBehavior : MonoBehaviour {
 
 
     [SerializeField] private Transform trDropPoint;
-    [SerializeField] private float generationDistance;
+    [SerializeField] private float minGenerationDistance;
+    [SerializeField] private float maxGenerationDistance;
 
 
-    public List<GameObject> SpawnObjects(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public List<GameObject> SpawnObjects(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter, IItemDestructorBehaviorListener listener) {
 
         if (count <= 0) {
             throw new ArgumentException("Can't generate 0 or less items");
@@ -21,14 +22,14 @@ public class BaseGeneratorBehavior : MonoBehaviour {
 
         for (int i = 0; i < count; i++) {
 
-            var go = SpawnObject(pool, mustFaceGenerationCenter);
+            var go = SpawnObject(pool, mustFaceGenerationCenter, listener);
             res.Add(go);
         }
 
         return res;
     }
 
-    public GameObject SpawnObject(LeanGameObjectPool pool, bool mustFaceGenerationCenter) {
+    public GameObject SpawnObject(LeanGameObjectPool pool, bool mustFaceGenerationCenter, IItemDestructorBehaviorListener listener) {
 
         if (pool == null) {
             throw new ArgumentException("Can't generate item without pool");
@@ -38,7 +39,11 @@ public class BaseGeneratorBehavior : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
         //move the point locally to have a generation distance from the center
-        trDropPoint.transform.localPosition = new Vector3(0, 0, generationDistance);
+        var distance = minGenerationDistance;
+        if (minGenerationDistance < maxGenerationDistance) {
+            distance = UnityEngine.Random.Range(minGenerationDistance, maxGenerationDistance);
+        }
+        trDropPoint.transform.localPosition = new Vector3(0, 0, distance);
 
         //get the global position of the drop point to generate the item
         var goItem = pool.Spawn(trDropPoint.position, Quaternion.identity);
@@ -49,7 +54,7 @@ public class BaseGeneratorBehavior : MonoBehaviour {
         }
 
         //if the item has a destructor behavior, init it
-        goItem.GetComponent<ItemDestructorBehavior>()?.Init(pool, trDropPoint);
+        goItem.GetComponent<ItemDestructorBehavior>()?.Init(pool, trDropPoint, listener);
 
         return goItem;
     }

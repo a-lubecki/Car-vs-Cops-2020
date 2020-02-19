@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6471913226812757996}
   - component: {fileID: 5262071798526511162}
   - component: {fileID: 5504940182398752452}
+  - component: {fileID: -3330739975558968240}
   m_Layer: 0
   m_Name: EnemyVehicle
   m_TagString: Untagged
@@ -90,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562abe17caeff411d991c3e41e27a357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromCenter: 1000
+  distanceFromCenter: 500
 --- !u!114 &6471913226812757996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goModel: {fileID: 7309654592763755747}
   lifeBehavior: {fileID: 6471913226812757996}
-  gameManager: {fileID: 0}
   itemDestructorBehavior: {fileID: 8778617289127698181}
 --- !u!114 &5504940182398752452
 MonoBehaviour:
@@ -134,7 +134,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3969445437cf44cfc8359eb1908b79e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationAnglePerSec: 200
+  maxRotationAnglePerSec: 150
+--- !u!114 &-3330739975558968240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176982949692950969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3d4c6c0901e4fe982ee0edc3652eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromTargetToActivateMaxSpeed: 50
+  maxSpeed: 1500
 --- !u!1 &5730867685758856199
 GameObject:
   m_ObjectHideFlags: 0

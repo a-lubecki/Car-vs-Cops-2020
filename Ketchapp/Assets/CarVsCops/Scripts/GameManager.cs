@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
 
     [SerializeField] private GameObject goMainCar;
@@ -74,6 +73,7 @@ public class GameManager : MonoBehaviour {
         carControlsManager.SetControlsEnabled(true);
 
         SpawnNewEnemies(4);
+        SpawnNewObstacles(30);
     }
 
     public void StopPlaying() {
@@ -88,10 +88,32 @@ public class GameManager : MonoBehaviour {
         carControlsManager.SetControlsEnabled(false);
     }
 
-    public void OnEnemyExploded() {
+    public void SpawnNewEnemies(int count) {
+
+        itemGeneratorBehavior.SpawnPoliceCars(count, this, goMainCar);
+    }
+
+    public void SpawnNewObstacles(int count) {
+
+        itemGeneratorBehavior.SpawnObstacles(count, this);
+    }
+
+    public void OnItemDestroyed(GameObject goItem) {
+
+        var enemyBehavior = goItem.GetComponent<EnemyBehavior>();
+        if (enemyBehavior != null) {
+            OnEnemyDestroyed(enemyBehavior);
+        }
+
+        var obstacleBehavior = goItem.GetComponent<ObstacleBehavior>();
+        if (obstacleBehavior != null) {
+            OnObstacleDestroyed(obstacleBehavior);
+        }
+    }
+
+    private void OnEnemyDestroyed(EnemyBehavior enemyBehavior) {
 
         if (!isPlaying) {
-            //no score update if not playing
             return;
         }
 
@@ -100,14 +122,13 @@ public class GameManager : MonoBehaviour {
         SpawnNewEnemies(1);
     }
 
-    public void SpawnNewEnemies(int count) {
+    private void OnObstacleDestroyed(ObstacleBehavior obstacleBehavior) {
 
-        var goCars = itemGeneratorBehavior.SpawnPoliceCars(count, goMainCar);
-
-        //for all generated cars, init the game manager
-        foreach (var goCar in goCars) {
-            goCar.GetComponent<EnemyBehavior>()?.InitGameManager(this);
+        if (!isPlaying) {
+            return;
         }
+
+        SpawnNewObstacles(1);
     }
 
 }

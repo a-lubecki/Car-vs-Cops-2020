@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ObstacleBehavior : MonoBehaviour {
+
+
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
 
 
     public void Explode() {
@@ -13,7 +17,7 @@ public class ObstacleBehavior : MonoBehaviour {
 
         ///TODO explosion
 
-        ///TODO POOL
+        itemDestructorBehavior.DestroyCurrentItem();
     }
 
 }

@@ -5,17 +5,11 @@ using UnityEngine;
 public class EnemyBehavior : VehicleBehavior {
 
 
-    [SerializeField] private GameManager gameManager;
     [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
 
 
     protected override void UpdateInvincibilityDisplay() {
         //no specific update
-    }
-
-    public void InitGameManager(GameManager gameManager) {
-
-        this.gameManager = gameManager ?? throw new ArgumentException();
     }
 
     protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
@@ -42,8 +36,6 @@ public class EnemyBehavior : VehicleBehavior {
         ///TODO delay of the explosion before destroying
 
         itemDestructorBehavior.DestroyCurrentItem();
-
-        gameManager.OnEnemyExploded();
     }
 
 }
