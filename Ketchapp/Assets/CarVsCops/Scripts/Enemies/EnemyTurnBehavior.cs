@@ -7,6 +7,16 @@ public class EnemyTurnBehavior : BaseTurnBehavior {
 
     private Transform trTargetToFollow;
 
+    //we can consider the enemy is aligned with the target if it's in the alignment range (the range is an angle)
+    private float alignmentRangeDegree = 10;
+
+
+    public void OnEnable() {
+
+        //min range is 10 degrees to avoid snaking and more to add more random on the enemy group trajectories
+        alignmentRangeDegree = UnityEngine.Random.Range(10, 90);
+    }
+
 
     public void InitTargetToFollow(Transform trTargetToFollow) {
 
@@ -37,9 +47,10 @@ public class EnemyTurnBehavior : BaseTurnBehavior {
 
         //check if must rotate left or right depending of the calculated angle
         //cut 10 degrees to avoid snaking
-        if (185 <= angle && angle <= 360) {
+        var halfRange = 0.5 * alignmentRangeDegree;
+        if (180 + halfRange <= angle && angle <= 360) {
             MustRotateLeft = true;
-        } else if (0 <= angle && angle <= 175) {
+        } else if (0 <= angle && angle <= 180 - halfRange) {
             MustRotateRight = true;
         }
 
