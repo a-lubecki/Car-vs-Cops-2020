@@ -8,7 +8,7 @@ public class CarControlsManager : MonoBehaviour {
 
     private bool controlsEnabled = true;
 
-    private ICarControlsManagerListener listener {
+    private ICarControlsManagerListener Listener {
         get {
             return goListener?.GetComponent<ICarControlsManagerListener>();
         }
@@ -29,9 +29,9 @@ public class CarControlsManager : MonoBehaviour {
         if (Input.GetMouseButton(0)) {
 
             if (Input.mousePosition.x < 0.5f * Screen.width) {
-                listener?.onLeftPressed();
+                Listener?.onLeftPressed();
             } else {
-                listener?.onRightPressed();
+                Listener?.onRightPressed();
             }
         }
 
@@ -39,9 +39,9 @@ public class CarControlsManager : MonoBehaviour {
         #if UNITY_EDITOR
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            listener?.onLeftPressed();
+            Listener?.onLeftPressed();
         } else if (Input.GetKey(KeyCode.RightArrow)) {
-            listener?.onRightPressed();
+            Listener?.onRightPressed();
         }
 
         #endif

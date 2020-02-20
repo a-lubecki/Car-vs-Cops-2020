@@ -38,9 +38,9 @@ public class EnemyTurnBehavior : BaseTurnBehavior {
         //check if must rotate left or right depending of the calculated angle
         //cut 10 degrees to avoid snaking
         if (185 <= angle && angle <= 360) {
-            mustRotateLeft = true;
+            MustRotateLeft = true;
         } else if (0 <= angle && angle <= 175) {
-            mustRotateRight = true;
+            MustRotateRight = true;
         }
 
         base.Update();

@@ -7,14 +7,14 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     [SerializeField] private LifeBehavior lifeBehavior;
 
-    protected Collider physicsCollider { get; private set; }
-    protected Collider triggerCollider { get; private set; }
+    protected Collider PhysicsCollider { get; private set; }
+    protected Collider TriggerCollider { get; private set; }
 
 
     void Awake() {
 
-        physicsCollider = GetComponents<Collider>()[0];
-        triggerCollider = GetComponents<Collider>()[1];
+        PhysicsCollider = GetComponents<Collider>()[0];
+        TriggerCollider = GetComponents<Collider>()[1];
     }
 
     void OnEnable() {

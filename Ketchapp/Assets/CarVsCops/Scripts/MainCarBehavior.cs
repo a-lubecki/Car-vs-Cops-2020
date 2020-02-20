@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 
 public class MainCarBehavior : VehicleBehavior {
 
 
     [SerializeField] private GameManager gameManager;
-    [SerializeField] protected GameObject goModel;
-    [SerializeField] protected GameObject goModelFaded;
+    [SerializeField] private GameObject goModel;
+    [SerializeField] private GameObject goModelFaded;
 
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {
 
         //chage to trigger instead of disabling so that the car will pass through the other
         // cars and obstacles but with still detect the life items
-        physicsCollider.enabled = !isInvincible;
+        PhysicsCollider.enabled = !isInvincible;
 
         goModel.SetActive(!isInvincible);
         goModelFaded.SetActive(isInvincible);

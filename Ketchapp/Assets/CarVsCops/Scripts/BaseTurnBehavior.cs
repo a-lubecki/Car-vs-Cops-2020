@@ -5,15 +5,15 @@ public abstract class BaseTurnBehavior : MonoBehaviour {
 
     [SerializeField] private float maxRotationAnglePerSec = 200f;
 
-    public bool mustRotateLeft { get; protected set; }
-    public bool mustRotateRight { get; protected set; }
+    public bool MustRotateLeft { get; protected set; }
+    public bool MustRotateRight { get; protected set; }
 
 
     protected virtual void Update() {
 
-        if (mustRotateLeft || mustRotateRight) {
+        if (MustRotateLeft || MustRotateRight) {
 
-            var multiplier = mustRotateLeft ? -1 : 1;
+            var multiplier = MustRotateLeft ? -1 : 1;
 
             //add rotation by multiplying the quaternions
             transform.localRotation *= Quaternion.Euler(
@@ -22,8 +22,8 @@ public abstract class BaseTurnBehavior : MonoBehaviour {
                 0
             );
 
-            mustRotateLeft = false;
-            mustRotateRight = false;
+            MustRotateLeft = false;
+            MustRotateRight = false;
         }
     }
 

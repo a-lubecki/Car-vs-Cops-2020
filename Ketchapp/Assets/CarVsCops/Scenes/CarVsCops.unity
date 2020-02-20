@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: Meilleur Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8166e812d860a483591f01a3d7d512c8, type: 2}
   m_sharedMaterial: {fileID: 839946990174489313, guid: 8166e812d860a483591f01a3d7d512c8,
@@ -940,10 +940,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 868063453}
-    characterCount: 5
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
