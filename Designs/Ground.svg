@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
@@ -18,31 +17,7 @@
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="Ground.svg">
   <defs
-     id="defs2">
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient848">
-      <stop
-         style="stop-color:#3b3b3b;stop-opacity:0.99215686"
-         offset="0"
-         id="stop844" />
-      <stop
-         style="stop-color:#000000;stop-opacity:1"
-         offset="1"
-         id="stop846" />
-    </linearGradient>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient848"
-       id="radialGradient850"
-       cx="92.226189"
-       cy="106.5"
-       fx="92.226189"
-       fy="106.5"
-       r="67.641262"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(2.1846461,3.3369786e-8,-1.9265016e-8,1.9778918,-109.25539,-104.14548)" />
-  </defs>
+     id="defs2" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -51,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="558.88268"
-     inkscape:cy="1073.2663"
+     inkscape:cx="286.02554"
+     inkscape:cy="902.55201"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1536"
-     inkscape:window-height="864"
-     inkscape:window-x="2113"
-     inkscape:window-y="53"
+     inkscape:window-width="1961"
+     inkscape:window-height="1023"
+     inkscape:window-x="1688"
+     inkscape:window-y="31"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -78,7 +53,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="opacity:1;fill:url(#radialGradient850);fill-opacity:1;fill-rule:evenodd;stroke:#c2c2c2;stroke-width:0.52916667;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#3e3e3e;fill-opacity:0.98689955;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.52916667;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
        id="rect834"
        width="134.55952"
        height="134.55952"

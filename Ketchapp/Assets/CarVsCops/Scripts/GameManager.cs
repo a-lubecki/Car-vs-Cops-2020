@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         //deactivate and reactivate to fully init the main car
         //the game object couldn't be deactivated during the car explosion because
         //some elements must be kept in the scene : camera, chasing target, etc
-        goMainCar.SetActive(false);
         mainCarBehavior.transform.rotation = Quaternion.identity;
         mainCarBehavior.transform.position = Vector3.zero;
         goMainCar.SetActive(true);
@@ -77,8 +76,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         carControlsManager.SetControlsEnabled(true);
 
         SpawnNewEnemies(4);
-        SpawnNewObstacles(30);
-        SpawnNewHeart(1);
+        SpawnNewObstacles(50);
+        SpawnNewHeart(3);
     }
 
     public void StopPlaying() {

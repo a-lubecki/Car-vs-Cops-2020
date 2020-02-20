@@ -8,32 +8,29 @@ public class EnemyBehavior : VehicleBehavior {
     [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
 
 
-    protected override void UpdateInvincibilityDisplay() {
+    protected override void UpdateInvincibilityDisplay(bool isInvincible) {
         //no specific update
     }
 
-    protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
-        base.OnCollisionWithEnemy(vehicleBehavior);
 
-        ///TODO
+    protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
+
+        TryLoseLife();
     }
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
-        base.OnCollisionWithObstacle(obstacleBehavior);
 
-        ///TODO
+        obstacleBehavior.Explode();
+
+        Explode();
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
-        base.OnCollisionWithCollectible(collectibleBehavior);
 
-        ///TODO
+        collectibleBehavior.Destroy();
     }
 
     protected override void OnVehicleExplode() {
-        base.OnVehicleExplode();
-
-        ///TODO delay of the explosion before destroying
 
         itemDestructorBehavior.DestroyCurrentItem();
     }

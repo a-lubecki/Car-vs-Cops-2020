@@ -5,8 +5,7 @@ using System.Collections;
 public abstract class VehicleBehavior : MonoBehaviour {
 
 
-    [SerializeField] protected GameObject goModel;
-    [SerializeField] protected LifeBehavior lifeBehavior;
+    [SerializeField] private LifeBehavior lifeBehavior;
 
     protected Collider physicsCollider { get; private set; }
     protected Collider triggerCollider { get; private set; }
@@ -16,6 +15,13 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         physicsCollider = GetComponents<Collider>()[0];
         triggerCollider = GetComponents<Collider>()[1];
+    }
+
+    void OnEnable() {
+
+        lifeBehavior.isInvincible = false;
+
+        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
     }
 
     void OnDisable() {
@@ -36,11 +42,10 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     public void Init() {
 
-        goModel.SetActive(true);
         GetComponent<Rigidbody>().isKinematic = false;
     }
 
-    private void TryLoseLife() {
+    protected void TryLoseLife() {
 
         if (lifeBehavior.isInvincible) {
             //nothing happens to the vehicle if invincible
@@ -60,17 +65,17 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         lifeBehavior.isInvincible = true;
 
-        UpdateInvincibilityDisplay();
+        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
 
         //set invincible for 3sec
         yield return new WaitForSeconds(3);
 
         lifeBehavior.isInvincible = false;
 
-        UpdateInvincibilityDisplay();
+        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
     }
 
-    protected abstract void UpdateInvincibilityDisplay();
+    protected abstract void UpdateInvincibilityDisplay(bool isInvincible);
 
     public void Explode() {
 
@@ -78,7 +83,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
             return;
         }
 
-        goModel.SetActive(false);
         GetComponent<Rigidbody>().isKinematic = true;
 
         ///TODO explosion
@@ -115,24 +119,12 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
     }
 
-    protected virtual void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
+    protected abstract void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior);
 
-        TryLoseLife();
-    }
+    protected abstract void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior);
 
-    protected virtual void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
+    protected abstract void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior);
 
-        obstacleBehavior.Explode();
-
-        TryLoseLife();
-    }
-
-    protected virtual void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
-        //override this
-    }
-
-    protected virtual void OnVehicleExplode() {
-        //override this
-    }
+    protected abstract void OnVehicleExplode();
 
 }

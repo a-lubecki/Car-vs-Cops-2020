@@ -6,40 +6,40 @@ public class MainCarBehavior : VehicleBehavior {
 
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] protected GameObject goModel;
+    [SerializeField] protected GameObject goModelFaded;
 
 
-    protected override void UpdateInvincibilityDisplay() {
+    protected override void UpdateInvincibilityDisplay(bool isInvincible) {
 
         //chage to trigger instead of disabling so that the car will pass through the other
         // cars and obstacles but with still detect the life items
-        physicsCollider.isTrigger = lifeBehavior.isInvincible;
+        physicsCollider.enabled = !isInvincible;
 
-        ///TODO shader alpha
-        var alpha = lifeBehavior.isInvincible ? 0.2f : 1;
-        goModel.GetComponent<Renderer>().material.DOFade(alpha, 0.5f);
+        goModel.SetActive(!isInvincible);
+        goModelFaded.SetActive(isInvincible);
     }
 
     protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
-        base.OnCollisionWithEnemy(vehicleBehavior);
 
-
-        ///TODO
+        TryLoseLife();
     }
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
-        base.OnCollisionWithObstacle(obstacleBehavior);
 
-        ///TODO
+        obstacleBehavior.Explode();
+
+        TryLoseLife();
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
-        base.OnCollisionWithCollectible(collectibleBehavior);
 
         collectibleBehavior.Collect();
     }
 
     protected override void OnVehicleExplode() {
-        base.OnVehicleExplode();
+
+        gameObject.SetActive(false);
 
         //trigger game over when main car has exploded
         gameManager.StopPlaying();
