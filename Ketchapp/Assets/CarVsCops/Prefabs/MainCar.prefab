@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af69499cb65347139233d8738c04e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationAnglePerSec: 220
+  maxRotationAnglePerSec: 230
 --- !u!114 &6526339145768888119
 MonoBehaviour:
   m_ObjectHideFlags: 0

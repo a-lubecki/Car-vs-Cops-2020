@@ -82,8 +82,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         carControlsManager.SetControlsEnabled(true);
 
         SpawnNewEnemies(4);
-        SpawnNewObstacles(50);
-        SpawnNewHeart(3);
+        SpawnNewObstacles(30);
+        SpawnNewHeart(2);
     }
 
     public void StopPlaying() {
@@ -98,17 +98,17 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         carControlsManager.SetControlsEnabled(false);
     }
 
-    public void SpawnNewEnemies(int count) {
+    private void SpawnNewEnemies(int count) {
 
         itemGeneratorBehavior.SpawnPoliceCars(count, this, goMainCar);
     }
 
-    public void SpawnNewObstacles(int count) {
+    private void SpawnNewObstacles(int count) {
 
         itemGeneratorBehavior.SpawnObstacles(count, this);
     }
 
-    public void SpawnNewHeart(int count) {
+    private void SpawnNewHeart(int count) {
 
         itemGeneratorBehavior.SpawnNewHearts(count, this, mainCarLifeBehavior);
     }
@@ -133,28 +133,32 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
     private void OnEnemyDestroyed(EnemyBehavior enemyBehavior) {
 
-        if (!isPlaying) {
+        if (!isPlaying && !isGameOver) {
             return;
         }
 
-        //increment multiplier before adding score
-        if (boostManager.IsBoostEnabled()) {
-            boostManager.BoostMultiplier++;
-        }
+        //handle score only when playing and no gameover
+        if (isPlaying) {
 
-        //calculate new score including multiplier
-        var newScore = 6;
-        if (boostManager.IsBoostEnabled()) {
-            newScore = 4 * boostManager.BoostMultiplier;
+            //increment multiplier before adding score
+            if (boostManager.IsBoostEnabled()) {
+                boostManager.BoostMultiplier++;
+            }
+
+            //calculate new score including multiplier
+            var newScore = 6;
+            if (boostManager.IsBoostEnabled()) {
+                newScore = 4 * boostManager.BoostMultiplier;
+            }
+            scoreManager.Score += newScore;
         }
-        scoreManager.Score += newScore;
 
         SpawnNewEnemies(1);
     }
 
     private void OnObstacleDestroyed(ObstacleBehavior obstacleBehavior) {
 
-        if (!isPlaying) {
+        if (!isPlaying && !isGameOver) {
             return;
         }
 
@@ -163,7 +167,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
     private void OnHeartDestroyed(HeartBehavior heartBehavior) {
 
-        if (!isPlaying) {
+        if (!isPlaying && !isGameOver) {
             return;
         }
 
