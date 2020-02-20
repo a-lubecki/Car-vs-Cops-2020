@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
         SpawnNewEnemies(4);
         SpawnNewObstacles(30);
-        SpawnNewHeart(2);
+        SpawnNewHeart(1);
     }
 
     public void StopPlaying() {
