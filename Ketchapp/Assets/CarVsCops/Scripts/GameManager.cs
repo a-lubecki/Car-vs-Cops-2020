@@ -6,22 +6,28 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
     [SerializeField] private GameObject goMainCar;
     [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior;
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private BoostManager boostManager;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
-    private LifeBehavior lifeBehavior;
+    private LifeBehavior mainCarLifeBehavior;
 
     private bool isPlaying;
     private bool isGameOver;
 
-    private int score;///TODO ScoreManager
+    public bool IsBoostEnabled {
+        get {
+            return boostManager.IsBoostEnabled();
+        }
+    }
 
 
     void Awake() {
 
         carControlsManager = goMainCar.GetComponent<CarControlsManager>();
         mainCarBehavior = goMainCar.GetComponent<MainCarBehavior>();
-        lifeBehavior = goMainCar.GetComponent<LifeBehavior>();
+        mainCarLifeBehavior = goMainCar.GetComponent<LifeBehavior>();
     }
 
     void Start() {
@@ -61,7 +67,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
         mainCarBehavior.Init();
 
-        score = 0;
+        scoreManager.Score = 0;
     }
 
     public void StartPlaying() {
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
 
     public void SpawnNewHeart(int count) {
 
-        itemGeneratorBehavior.SpawnNewHearts(count, this, lifeBehavior);
+        itemGeneratorBehavior.SpawnNewHearts(count, this, mainCarLifeBehavior);
     }
 
     public void OnItemDestroyed(GameObject goItem) {
@@ -131,7 +137,17 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
             return;
         }
 
-        score++;
+        //increment multiplier before adding score
+        if (boostManager.IsBoostEnabled()) {
+            boostManager.BoostMultiplier++;
+        }
+
+        //calculate new score including multiplier
+        var newScore = 6;
+        if (boostManager.IsBoostEnabled()) {
+            newScore = 4 * boostManager.BoostMultiplier;
+        }
+        scoreManager.Score += newScore;
 
         SpawnNewEnemies(1);
     }
@@ -152,6 +168,28 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         }
 
         SpawnNewHeart(1);
+    }
+
+    public void OnBoostGaugeValueChange(float amount) {
+
+        if (!isPlaying) {
+            return;
+        }
+
+        if (amount >= 1) {
+            SetBoostEnabled(true);
+        }
+    }
+
+    private void SetBoostEnabled(bool enabled) {
+
+        if (enabled) {
+            if (!boostManager.IsBoostEnabled()) {
+                boostManager.BoostMultiplier = 1;
+            }
+        } else {
+            boostManager.BoostMultiplier = 0;
+        }
     }
 
 }

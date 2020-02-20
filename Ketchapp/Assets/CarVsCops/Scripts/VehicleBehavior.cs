@@ -84,6 +84,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
 
         GetComponent<Rigidbody>().isKinematic = true;
+        
 
         ///TODO explosion
 

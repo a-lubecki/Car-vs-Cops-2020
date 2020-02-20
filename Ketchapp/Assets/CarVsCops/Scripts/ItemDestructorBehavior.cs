@@ -49,7 +49,7 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
         //avoid destroying if the OnDisable has been called by the listener notify
         if (isDestroying) {
-            pool?.Despawn(gameObject);
+            pool.Despawn(gameObject);
         }
     }
 
