@@ -6,7 +6,16 @@ public class BoostGaugeBehavior : MonoBehaviour {
 
 
     [SerializeField] private float speedIncrement = 0;
-    [SerializeField] private GameManager gameManager = null;
+
+    public GameObject goListener = null;
+    private IBoostGaugeBehaviorListener Listener {
+        get {
+            if (goListener == null) {
+                return null;
+            }
+            return goListener?.GetComponent<IBoostGaugeBehaviorListener>();
+        }
+    }
 
     private Image imageGauge;
 
@@ -50,11 +59,21 @@ public class BoostGaugeBehavior : MonoBehaviour {
 
     private void AddGaugeAmount(float value) {
 
+        var previousAmount = imageGauge.fillAmount;
+
         imageGauge.fillAmount += value;
 
         var amount = imageGauge.fillAmount;
-
-        gameManager.OnBoostGaugeValueChange(amount);
+        if (amount != previousAmount) {
+            Listener?.OnBoostGaugeValueChange(amount, previousAmount);
+        }
     }
+
+}
+
+
+public interface IBoostGaugeBehaviorListener {
+
+    void OnBoostGaugeValueChange(float percentage, float previousPercentage);
 
 }

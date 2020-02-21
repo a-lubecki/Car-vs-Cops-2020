@@ -4,7 +4,6 @@ public class LifeBehavior : MonoBehaviour {
 
 
     public GameObject goListener = null;
-
     private ILifeBehaviorListener Listener {
         get {
             if (goListener == null) {

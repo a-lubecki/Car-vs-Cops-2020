@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScoreTimerManagerListener {
+public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoostGaugeBehaviorListener, IScoreTimerManagerListener {
 
 
     [SerializeField] private GameObject goMainCar = null;
@@ -52,8 +52,6 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
         carControlsManager.SetControlsEnabled(false);
 
-        uiManager.ShowUIOnboarding(true);
-
         itemGeneratorBehavior.DespawnAll();
 
         //deactivate and reactivate to fully init the main car
@@ -64,6 +62,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         goMainCar.SetActive(true);
 
         SetScore(0);
+
+        uiManager.ShowUIOnboarding(true);
     }
 
     public void StartPlaying() {
@@ -78,13 +78,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         carControlsManager.SetControlsEnabled(true);
         mainCarBehavior.InitLife();
 
-        uiManager.ShowUIHUD(true);
+        SetBoostEnabled(false);
 
         SpawnNewEnemies(4);
         SpawnNewObstacles(50);
         SpawnNewHeart(1);
 
         scoreTimerBehavior.StartTimer();
+
+        uiManager.ShowUIHUD(true);
     }
 
     public void StopPlaying() {
@@ -98,9 +100,9 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
         carControlsManager.SetControlsEnabled(false);
 
-        uiManager.ShowUIGameOver(true);
-
         scoreTimerBehavior.StopTimer();
+        
+        uiManager.ShowUIGameOver(true);
     }
 
     private void SpawnNewEnemies(int count) {
@@ -180,13 +182,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         SpawnNewHeart(1);
     }
 
-    public void OnBoostGaugeValueChange(float amount) {
+    public void OnBoostGaugeValueChange(float percentage, float previousPercentage) {
 
         if (!isPlaying) {
             return;
         }
 
-        if (amount >= 1) {
+        uiManager.UpdateBoost(!boostManager.IsComboEnabled(), percentage);
+
+        if (percentage >= 1) {
             SetBoostEnabled(true);
         }
     }

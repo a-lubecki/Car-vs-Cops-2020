@@ -6,7 +6,6 @@ public class TimerBehavior : MonoBehaviour {
 
 
     public GameObject goListener;
-
     private IScoreTimerManagerListener Listener {
         get {
             if (goListener == null) {

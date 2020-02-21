@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour {
         uiGameOverBehavior.Show(animated);
         uiOnboardingBehavior.Hide(animated);
         HideUICombo(animated);
+        UpdateBoost(false, 0);
     }
 
     public void ShowUIHUD(bool animated) {
@@ -47,4 +48,8 @@ public class UIManager : MonoBehaviour {
         uiHudBehavior.UpdateTextScore(score, addedValue, animated);
     }
 
+    public void UpdateBoost(bool displayed, float percentage) {
+
+        uiHudBehavior.UpdateTextBoostAlpha(displayed, percentage);
+    }
 }

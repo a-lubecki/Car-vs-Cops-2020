@@ -4,10 +4,9 @@
 public class CarControlsManager : MonoBehaviour {
 
 
-    public GameObject goListener;
-
     private bool controlsEnabled = true;
-
+    
+    public GameObject goListener;
     private ICarControlsManagerListener Listener {
         get {
             if (goListener == null) {

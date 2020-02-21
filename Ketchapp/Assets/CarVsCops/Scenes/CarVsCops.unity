@@ -307,7 +307,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 10
+  m_Radius: 12
   m_Height: 60
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -15}
@@ -1774,10 +1774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textScore: {fileID: 1802737660}
   textAddedScoreValue: {fileID: 654513903}
-  uiLifeBar: {fileID: 0}
   textBoost: {fileID: 1411361827}
-  boostManager: {fileID: 841414715}
-  boostGaugeBehavior: {fileID: 1190002697}
 --- !u!225 &926425909
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1996,7 +1993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedIncrement: 0.7
-  gameManager: {fileID: 841414713}
+  goListener: {fileID: 841414712}
 --- !u!1 &1208826691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,7 +2306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1379994841}
   - component: {fileID: 1379994842}
-  - component: {fileID: 1379994843}
   m_Layer: 5
   m_Name: Hearts
   m_TagString: Untagged
@@ -2355,18 +2351,6 @@ MonoBehaviour:
   - {fileID: 1274294916}
   - {fileID: 633725118}
   - {fileID: 890826366}
---- !u!225 &1379994843
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379994840}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &1411361825
 GameObject:
   m_ObjectHideFlags: 0
