@@ -33,7 +33,7 @@ public class BoostZoneBehavior : MonoBehaviour {
         objectsInZone.Clear();
     }
 
-    void Update() {
+    void LateUpdate() {
 
         //when an object is in the zone and deactivated, the OnTriggerExit won't be called so
         // if it happen, remove the object and try deactivating gauge as if OnTriggerExitd would be called
@@ -41,7 +41,7 @@ public class BoostZoneBehavior : MonoBehaviour {
 
         foreach (var go in objectsInZone) {
 
-            if (go.activeSelf) {
+            if (go.activeSelf && AreCollidersInZone(go)) {
                 //the object can still call OnTriggerExit
                 continue;
             }
@@ -64,6 +64,23 @@ public class BoostZoneBehavior : MonoBehaviour {
 
             TryDeactivateGauge();
         }
+    }
+
+    private bool AreCollidersInZone(GameObject go) {
+
+        if (!go.activeSelf) {
+            return false;
+        }
+
+        foreach (var c in go.GetComponents<Collider>()) {
+
+            if (c.isTrigger && zoneCollider.bounds.Intersects(c.bounds)) {
+                //object is still in zone
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void OnTriggerEnter(Collider collider) {
