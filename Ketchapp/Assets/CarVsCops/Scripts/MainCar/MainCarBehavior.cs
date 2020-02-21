@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 
 public class MainCarBehavior : VehicleBehavior {
@@ -19,16 +20,24 @@ public class MainCarBehavior : VehicleBehavior {
         goModelFaded.SetActive(isInvincible);
     }
 
+    private void HandleDamage() {
+
+        var hasLostLife = TryLoseLife();
+        if (hasLostLife) {
+            Camera.main.DOShakePosition(0.5f, 2, 20);
+        }
+    }
+
     protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
 
-        TryLoseLife();
+        HandleDamage();
     }
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
 
         obstacleBehavior.Explode();
 
-        TryLoseLife();
+        HandleDamage();
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {

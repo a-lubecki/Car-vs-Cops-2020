@@ -45,11 +45,12 @@ public abstract class VehicleBehavior : MonoBehaviour {
         GetComponent<Rigidbody>().isKinematic = false;
     }
 
-    protected void TryLoseLife() {
+    ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
+    protected bool TryLoseLife() {
 
         if (lifeBehavior.isInvincible) {
             //nothing happens to the vehicle if invincible
-            return;
+            return false;
         }
 
         lifeBehavior.DecrementLife();
@@ -59,6 +60,8 @@ public abstract class VehicleBehavior : MonoBehaviour {
         } else {
             StartCoroutine(SetInvincibleForDuration());
         }
+
+        return true;
     }
 
     private IEnumerator SetInvincibleForDuration() {
@@ -84,7 +87,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
 
         GetComponent<Rigidbody>().isKinematic = true;
-        
+
 
         ///TODO explosion
 
