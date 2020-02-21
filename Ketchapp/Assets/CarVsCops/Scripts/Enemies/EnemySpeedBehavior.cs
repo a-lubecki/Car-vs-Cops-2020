@@ -2,16 +2,16 @@
 using UnityEngine;
 
 
-///Increase the speed of an enemy when it's too far from the target
+///Increase the speed of an enemy when it's too far from the target => reduce the time between enemies waves
 public class EnemySpeedBehavior : MonoBehaviour {
 
 
-    [SerializeField] private float distanceFromTargetToActivateMaxSpeed;
     [SerializeField] private float maxSpeed;
 
     private Transform trTargetToFollow;
     private ConstantForce force;
     private float originalForceValue;
+    private float distanceFromTargetToActivateMaxSpeed;
 
 
     void Awake() {
@@ -23,6 +23,9 @@ public class EnemySpeedBehavior : MonoBehaviour {
     public void InitTargetToFollow(Transform trTargetToFollow) {
 
         this.trTargetToFollow = trTargetToFollow ?? throw new ArgumentException();
+
+        //randomize the distance so that the enemies will be more or less close to the target when they are on min speed
+        distanceFromTargetToActivateMaxSpeed = UnityEngine.Random.Range(40, 100);
     }
 
     void Update() {
