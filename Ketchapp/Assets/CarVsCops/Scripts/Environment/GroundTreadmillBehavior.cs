@@ -9,12 +9,12 @@ public class GroundTreadmillBehavior : MonoBehaviour {
     private MeshRenderer meshRenderer;
 
 
-    void Start() {
+    protected void Start() {
 
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    void Update() {
+    protected void Update() {
 
         //move the texture like the target to make the illusion of a static ground
         meshRenderer.material.mainTextureOffset = new Vector2(

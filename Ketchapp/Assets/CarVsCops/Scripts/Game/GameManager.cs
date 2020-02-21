@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
 
-public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoostGaugeBehaviorListener, IScoreTimerManagerListener {
+public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoostGaugeBehaviorListener, IComboBehaviorListener, IScoreTimerManagerListener {
 
 
     [SerializeField] private GameObject goMainCar = null;
     [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior = null;
     [SerializeField] private ScoreManager scoreManager = null;
     [SerializeField] private TimerBehavior scoreTimerBehavior = null;
-    [SerializeField] private ComboManager boostManager = null;
+    [SerializeField] private ComboBehavior comboBehavior = null;
     [SerializeField] private UIManager uiManager = null;
 
     private CarControlsManager carControlsManager;
@@ -19,19 +19,19 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
     private bool isGameOver;
 
 
-    void Awake() {
+    protected void Awake() {
 
         carControlsManager = goMainCar.GetComponent<CarControlsManager>();
         mainCarBehavior = goMainCar.GetComponent<MainCarBehavior>();
         mainCarLifeBehavior = goMainCar.GetComponent<LifeBehavior>();
     }
 
-    void Start() {
+    protected void Start() {
 
         ShowOnboarding();
     }
 
-    void Update() {
+    protected void Update() {
 
         if (Input.GetMouseButtonDown(0)) {
 
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         carControlsManager.SetControlsEnabled(true);
         mainCarBehavior.InitLife();
 
-        SetBoostEnabled(false);
+        comboBehavior.SetComboEnabled(false);
 
         SpawnNewEnemies(4);
         SpawnNewObstacles(50);
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         carControlsManager.SetControlsEnabled(false);
 
         scoreTimerBehavior.StopTimer();
-        
+
         uiManager.ShowUIGameOver(true);
     }
 
@@ -148,14 +148,14 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         if (isPlaying && hasExploded) {
 
             //increment multiplier before adding score
-            if (boostManager.IsComboEnabled()) {
-                boostManager.ComboMultiplier++;
+            if (comboBehavior.IsComboEnabled) {
+                comboBehavior.SetComboMultiplier(comboBehavior.ComboMultiplier + 1);
             }
 
             //calculate new score including multiplier
             var newScore = 6;
-            if (boostManager.IsComboEnabled()) {
-                newScore = 4 * boostManager.ComboMultiplier;
+            if (comboBehavior.IsComboEnabled) {
+                newScore = 4 * comboBehavior.ComboMultiplier;
             }
 
             AddValueToScore(newScore, true);
@@ -188,22 +188,27 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
             return;
         }
 
-        uiManager.UpdateBoost(!boostManager.IsComboEnabled(), percentage);
-
         if (percentage >= 1) {
-            SetBoostEnabled(true);
+            comboBehavior.SetComboEnabled(true);
         }
+
+        uiManager.UpdateBoost(!comboBehavior.IsComboEnabled, percentage);
     }
 
-    private void SetBoostEnabled(bool enabled) {
+    public void OnComboEnabled() {
 
-        if (enabled) {
-            if (!boostManager.IsComboEnabled()) {
-                boostManager.ComboMultiplier = 1;
-            }
-        } else {
-            boostManager.ComboMultiplier = 0;
-        }
+        uiManager.ShowUICombo(true);
+        uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, false);
+    }
+
+    public void OnComboDisabled() {
+
+        uiManager.HideUICombo(true);
+    }
+
+    public void OnComboMultiplierChange() {
+
+        uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, true);
     }
 
     public void OnTimerTick() {

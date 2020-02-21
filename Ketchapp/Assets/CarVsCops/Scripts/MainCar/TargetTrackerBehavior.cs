@@ -7,11 +7,10 @@ public class TargetTrackerBehavior : MonoBehaviour {
     [SerializeField] private Transform trTargetToFollow = null;
 
 
-    void Update() {
+    protected void Update() {
 
         //track the target
         transform.position = trTargetToFollow.position;
-        //transform.rotation = trTargetToFollow.rotation;
     }
 
 }

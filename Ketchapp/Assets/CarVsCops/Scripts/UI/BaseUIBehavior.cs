@@ -10,7 +10,7 @@ public abstract class BaseUIBehavior : MonoBehaviour {
     public bool IsShown { get; private set; }
 
 
-    void Awake() {
+    protected virtual void Awake() {
 
         canvasGroup = GetComponent<CanvasGroup>();
 

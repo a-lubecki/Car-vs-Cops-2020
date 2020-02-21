@@ -865,6 +865,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cdfd127aa1347e8b68f5eb8ac5982a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMultiplier: {fileID: 2080981317}
+  multiplierAnimationScale: 1.5
+  multiplierAnimationColor: {r: 0.9433962, g: 0.32484868, b: 0.7990683, a: 1}
 --- !u!1 &633725116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,8 +1022,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1441,7 +1444,7 @@ MonoBehaviour:
   itemGeneratorBehavior: {fileID: 479219185}
   scoreManager: {fileID: 841414716}
   scoreTimerBehavior: {fileID: 841414717}
-  boostManager: {fileID: 841414715}
+  comboBehavior: {fileID: 841414715}
   uiManager: {fileID: 1016323374}
 --- !u!4 &841414714
 Transform:
@@ -1466,9 +1469,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 841414712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc52d8eec21ee44dba7706ce5e98f71f, type: 3}
+  m_Script: {fileID: 11500000, guid: 67142d737f4724548b5c2679d0cdb25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goListener: {fileID: 841414712}
 --- !u!114 &841414716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1993,6 +1997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedIncrement: 0.7
+  speedDecrement: 0.5
   goListener: {fileID: 841414712}
 --- !u!1 &1208826691
 GameObject:

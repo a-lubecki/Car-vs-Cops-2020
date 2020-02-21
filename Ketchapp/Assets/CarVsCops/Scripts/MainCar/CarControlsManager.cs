@@ -5,7 +5,7 @@ public class CarControlsManager : MonoBehaviour {
 
 
     private bool controlsEnabled = true;
-    
+
     public GameObject goListener;
     private ICarControlsManagerListener Listener {
         get {
@@ -21,7 +21,7 @@ public class CarControlsManager : MonoBehaviour {
         this.controlsEnabled = controlsEnabled;
     }
 
-    void Update() {
+    protected void Update() {
 
         if (!controlsEnabled) {
             return;

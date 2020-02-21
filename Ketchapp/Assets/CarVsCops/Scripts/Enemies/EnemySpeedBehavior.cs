@@ -14,7 +14,7 @@ public class EnemySpeedBehavior : MonoBehaviour {
     private float distanceFromTargetToActivateMaxSpeed;
 
 
-    void Awake() {
+    protected void Awake() {
 
         force = GetComponent<ConstantForce>();
         originalForceValue = force.relativeForce.z;
@@ -28,7 +28,7 @@ public class EnemySpeedBehavior : MonoBehaviour {
         distanceFromTargetToActivateMaxSpeed = UnityEngine.Random.Range(30, 60);
     }
 
-    void Update() {
+    protected void Update() {
 
         if (trTargetToFollow == null) {
             //no target to follow

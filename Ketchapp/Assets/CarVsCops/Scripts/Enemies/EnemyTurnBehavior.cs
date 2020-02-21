@@ -11,10 +11,10 @@ public class EnemyTurnBehavior : BaseTurnBehavior {
     private float alignmentRangeDegree = 10;
 
 
-    public void OnEnable() {
+    protected void OnEnable() {
 
         //min range is 10 degrees to avoid snaking and more to add more random on the enemy group trajectories
-        alignmentRangeDegree = UnityEngine.Random.Range(10, 90);
+        alignmentRangeDegree = UnityEngine.Random.Range(10, 60);
     }
 
     public void InitTargetToFollow(Transform trTargetToFollow) {

@@ -13,13 +13,13 @@ public abstract class VehicleBehavior : MonoBehaviour {
     public bool HasExploded { get; private set; }
 
 
-    void Awake() {
+    protected void Awake() {
 
         PhysicsCollider = GetComponents<Collider>()[0];
         TriggerCollider = GetComponents<Collider>()[1];
     }
 
-    void OnEnable() {
+    protected void OnEnable() {
 
         HasExploded = false;
 
@@ -30,15 +30,15 @@ public abstract class VehicleBehavior : MonoBehaviour {
         UpdateInvincibilityDisplay(false);
     }
 
-    void OnDisable() {
+    protected void OnDisable() {
 
         //stop invincibility coroutines to avoid bugs after pooling
         StopAllCoroutines();
     }
 
-    public void Update() {
+    protected void Update() {
 
-        //freezing position / rotation are not necessary : bugs can occur with collisions
+        //freezing position / rotation in the rigidbody constraints are not enough : bugs can occur with collisions
         var pos = transform.localPosition;
         pos.y = 0;
         transform.localPosition = pos;
@@ -101,7 +101,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         OnVehicleExplode();
     }
 
-    void OnCollisionEnter(Collision collision) {
+    protected void OnCollisionEnter(Collision collision) {
 
         var goOther = collision.gameObject;
 
@@ -121,7 +121,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider collider) {
+    protected void OnTriggerEnter(Collider collider) {
 
         //only the main car can detect collectibles with trigger (when the car is invincible)
         var collectibleBehavior = collider.GetComponent<CollectibleBehavior>();

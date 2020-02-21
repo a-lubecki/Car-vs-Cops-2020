@@ -6,6 +6,7 @@ public class BoostGaugeBehavior : MonoBehaviour {
 
 
     [SerializeField] private float speedIncrement = 0;
+    [SerializeField] private float speedDecrement = 0;
 
     public GameObject goListener = null;
     private IBoostGaugeBehaviorListener Listener {
@@ -23,12 +24,12 @@ public class BoostGaugeBehavior : MonoBehaviour {
     public bool IsDecrementing { get; private set; }
 
 
-    void Awake() {
+    protected void Awake() {
 
         imageGauge = GetComponent<Image>();
     }
 
-    void OnEnable() {
+    protected void OnEnable() {
 
         IsIncrementing = false;
         IsDecrementing = false;
@@ -36,12 +37,12 @@ public class BoostGaugeBehavior : MonoBehaviour {
         imageGauge.fillAmount = 0;
     }
 
-    void Update() {
+    protected void Update() {
 
         if (IsIncrementing) {
             AddGaugeAmount(speedIncrement * Time.deltaTime);
         } else if (IsDecrementing) {
-            AddGaugeAmount(-speedIncrement * Time.deltaTime);
+            AddGaugeAmount(-speedDecrement * Time.deltaTime);
         }
     }
 

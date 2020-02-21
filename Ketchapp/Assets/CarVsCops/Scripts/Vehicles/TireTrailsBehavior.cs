@@ -8,19 +8,19 @@ public class TireTrailsBehavior : MonoBehaviour {
     [SerializeField] private TrailRenderer[] tireTrailRenderers = null;
 
 
-    void Awake() {
+    protected void Awake() {
 
         //disable trail renderers to avoid glitches during init position setting
         SetTrailsEnabled(false);
     }
 
-    void OnEnable() {
+    protected void OnEnable() {
 
         //delay the display of the trails to let the init processing
         StartCoroutine(SetTrailsEnabledAfterDelay());
     }
 
-    void OnDisable() {
+    protected void OnDisable() {
 
         SetTrailsEnabled(false);
 

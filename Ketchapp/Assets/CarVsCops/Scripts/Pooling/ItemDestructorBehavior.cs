@@ -22,13 +22,13 @@ public class ItemDestructorBehavior : MonoBehaviour {
         this.listener = listener;
     }
 
-    void OnDisable() {
+    protected void OnDisable() {
 
         isDestroying = false;
         listener = null;
     }
 
-    void Update() {
+    protected void Update() {
 
         //destroy item if too far from the center
         if (Vector3.Distance(transform.position, trDropPoint.position) > distanceFromCenter) {
@@ -38,6 +38,10 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
     public void DestroyCurrentItem() {
 
+        if (!gameObject.activeSelf) {
+            //can't destroy if not active
+            return;
+        }
         if (isDestroying) {
             //the DestroyCurrentItem() has already been called, it can be cause by a recursion loop due to the previous listener notify
             return;
@@ -49,7 +53,7 @@ public class ItemDestructorBehavior : MonoBehaviour {
         listener?.OnItemDestroyed(gameObject);
 
         //avoid destroying if the OnDisable has been called by the listener notify
-        if (isDestroying) {
+        if (gameObject.activeSelf && isDestroying) {
             pool.Despawn(gameObject);
         }
     }

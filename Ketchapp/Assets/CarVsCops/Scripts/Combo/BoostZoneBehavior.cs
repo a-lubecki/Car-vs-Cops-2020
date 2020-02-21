@@ -16,24 +16,24 @@ public class BoostZoneBehavior : MonoBehaviour {
     private HashSet<GameObject> objectsInZone = new HashSet<GameObject>();
 
 
-    void Awake() {
+    protected void Awake() {
 
         imageZone = GetComponent<Image>();
         zoneCollider = GetComponent<Collider>();
     }
 
-    void OnEnable() {
+    protected void OnEnable() {
 
         //deactivate gauge display when the car appear
         SetGaugeActivated(false, false);
     }
 
-    void OnDisable() {
+    protected void OnDisable() {
 
         objectsInZone.Clear();
     }
 
-    void LateUpdate() {
+    protected void LateUpdate() {
 
         //when an object is in the zone and deactivated, the OnTriggerExit won't be called so
         // if it happen, remove the object and try deactivating gauge as if OnTriggerExitd would be called
@@ -83,7 +83,7 @@ public class BoostZoneBehavior : MonoBehaviour {
         return false;
     }
 
-    void OnTriggerEnter(Collider collider) {
+    protected void OnTriggerEnter(Collider collider) {
 
         if (collider.GetComponent<EnemyBehavior>() == null) {
             //not an enemy
@@ -97,7 +97,7 @@ public class BoostZoneBehavior : MonoBehaviour {
         SetGaugeActivated(true, true);
     }
 
-    void OnTriggerExit(Collider collider) {
+    protected void OnTriggerExit(Collider collider) {
 
         if (collider.GetComponent<EnemyBehavior>() == null) {
             //not an enemy

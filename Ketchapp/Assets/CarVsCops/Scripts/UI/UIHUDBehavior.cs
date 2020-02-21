@@ -11,7 +11,7 @@ public class UIHUDBehavior : BaseUIBehavior {
     [SerializeField] private TextMeshProUGUI textBoost = null;
 
 
-    void Start() {
+    protected void Start() {
 
         textAddedScoreValue.alpha = 0;
         UpdateTextBoostAlpha(false, 0);

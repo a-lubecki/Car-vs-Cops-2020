@@ -52,4 +52,10 @@ public class UIManager : MonoBehaviour {
 
         uiHudBehavior.UpdateTextBoostAlpha(displayed, percentage);
     }
+
+    public void UpdateComboMultiplier(int multiplier, bool animated) {
+
+        uiComboBehavior.UpdateMultiplier(multiplier, animated);
+    }
+
 }

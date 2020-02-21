@@ -18,7 +18,7 @@ public class TimerBehavior : MonoBehaviour {
     private bool isRunning;
 
 
-    void OnDisable() {
+    protected void OnDisable() {
 
         isRunning = false;
 

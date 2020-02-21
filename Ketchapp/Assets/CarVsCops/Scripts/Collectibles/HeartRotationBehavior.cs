@@ -7,7 +7,7 @@ public class HeartRotationBehavior : MonoBehaviour {
     [SerializeField] private float rotationSpeed = 0;
 
 
-    void Update() {
+    protected void Update() {
 
         //spin the heart
         var newValue = transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime;
