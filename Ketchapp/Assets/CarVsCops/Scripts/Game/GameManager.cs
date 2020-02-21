@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         SpawnNewHeart(1);
     }
 
-    public void OnBoostGaugeValueChange(float percentage, float previousPercentage) {
+    public void OnBoostGaugeValueUpdate(float percentage) {
 
         if (!isPlaying) {
             return;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 
@@ -22,6 +21,18 @@ public class ComboBehavior : MonoBehaviour {
     public bool IsComboEnabled { get; private set; }
     public int ComboMultiplier { get; private set; }
 
+    ///the time when the combo must be disabled
+    private float? disablingTime;
+
+
+    protected void Update() {
+
+        if (disablingTime.HasValue && Time.timeSinceLevelLoad > disablingTime.Value) {
+            //time has elapsed, the combo must be disabled
+            disablingTime = null;
+            SetComboEnabled(false);
+        }
+    }
 
     protected void OnDisable() {
 
@@ -45,17 +56,9 @@ public class ComboBehavior : MonoBehaviour {
         }
 
         if (IsComboEnabled) {
-            //reset disabling timer for 3 sec
-            StopAllCoroutines();
-            StartCoroutine(DisableComboAfterDelay());
+            //set the time to disable at now + some seconds
+            disablingTime = Time.timeSinceLevelLoad + COMBO_DURATION_SEC;
         }
-    }
-
-    public IEnumerator DisableComboAfterDelay() {
-
-        yield return new WaitForSeconds(COMBO_DURATION_SEC);
-
-        SetComboEnabled(false);
     }
 
     public void SetComboMultiplier(int multiplier) {

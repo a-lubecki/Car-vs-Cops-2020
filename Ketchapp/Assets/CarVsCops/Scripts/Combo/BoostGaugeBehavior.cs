@@ -60,14 +60,9 @@ public class BoostGaugeBehavior : MonoBehaviour {
 
     private void AddGaugeAmount(float value) {
 
-        var previousAmount = imageGauge.fillAmount;
-
         imageGauge.fillAmount += value;
 
-        var amount = imageGauge.fillAmount;
-        if (amount != previousAmount) {
-            Listener?.OnBoostGaugeValueChange(amount, previousAmount);
-        }
+        Listener?.OnBoostGaugeValueUpdate(imageGauge.fillAmount);
     }
 
 }
@@ -75,6 +70,6 @@ public class BoostGaugeBehavior : MonoBehaviour {
 
 public interface IBoostGaugeBehaviorListener {
 
-    void OnBoostGaugeValueChange(float percentage, float previousPercentage);
+    void OnBoostGaugeValueUpdate(float percentage);
 
 }
