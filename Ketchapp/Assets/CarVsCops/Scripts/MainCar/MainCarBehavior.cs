@@ -43,6 +43,9 @@ public class MainCarBehavior : VehicleBehavior {
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
 
         collectibleBehavior.Collect();
+
+        //hearts collectibles refills life so update the smoke
+        UpdateDamageParticles();
     }
 
     protected override void OnVehicleExplode() {

@@ -3579,6 +3579,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2096963936}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977431178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6264473021641754710, guid: 4fc0d89e4dc17467f8ee7fa68a61e223,
+    type: 3}
+  m_PrefabInstance: {fileID: 2096963936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977431166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e86b85d1f36b44b7a3a7938963b6d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2080981315
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,6 +3799,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 841414713}
+    - target: {fileID: 6526339145768888119, guid: 4fc0d89e4dc17467f8ee7fa68a61e223,
+        type: 3}
+      propertyPath: damageParticlesBehavior
+      value: 
+      objectReference: {fileID: 1977431178}
     - target: {fileID: 6569264764662158054, guid: 4fc0d89e4dc17467f8ee7fa68a61e223,
         type: 3}
       propertyPath: m_RootOrder

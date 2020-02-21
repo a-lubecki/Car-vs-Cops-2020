@@ -6,6 +6,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
 
     [SerializeField] private LifeBehavior lifeBehavior = null;
+    [SerializeField] private DamageParticlesBehavior damageParticlesBehavior = null;
 
     protected Collider PhysicsCollider { get; private set; }
     protected Collider TriggerCollider { get; private set; }
@@ -51,12 +52,14 @@ public abstract class VehicleBehavior : MonoBehaviour {
         SetInvincible(false);
 
         lifeBehavior.Life = lifeBehavior.MaxLife;
+
+        UpdateDamageParticles();
     }
 
     ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
-    protected bool TryLoseLife(int value, bool force = false) {
+    protected bool TryLoseLife(int value, bool forceLoseLife = false) {
 
-        if (force) {
+        if (forceLoseLife) {
             SetInvincible(false);
         }
 
@@ -72,6 +75,8 @@ public abstract class VehicleBehavior : MonoBehaviour {
         } else {
             StartCoroutine(SetInvincibleForDuration());
         }
+
+        UpdateDamageParticles();
 
         return true;
     }
@@ -93,6 +98,19 @@ public abstract class VehicleBehavior : MonoBehaviour {
     }
 
     protected abstract void UpdateInvincibilityDisplay(bool isInvincible);
+
+    protected void UpdateDamageParticles() {
+
+        //show particles depending on life value
+        var life = lifeBehavior.Life;
+        if (life == 2) {
+            damageParticlesBehavior.ActivateSmoke();
+        } else if (life == 1) {
+            damageParticlesBehavior.ActivateFire();
+        } else {
+            damageParticlesBehavior.Deactivate();
+        }
+    }
 
     protected void Explode() {
 
