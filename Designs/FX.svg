@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="FX.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient825">
+      <stop
+         style="stop-color:#000000;stop-opacity:0"
+         offset="0"
+         id="stop821" />
+      <stop
+         id="stop829"
+         offset="0.23558906"
+         style="stop-color:#cdcdcd;stop-opacity:0" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.75545853"
+         offset="1"
+         id="stop823" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient825"
+       id="radialGradient827"
+       cx="65.767853"
+       cy="167.73215"
+       fx="65.767853"
+       fy="167.73215"
+       r="46.869045"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0365657,-3.6098008e-8,3.6317506e-8,2.0489486,-68.172706,-175.94242)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="191.60946"
+     inkscape:cy="517.96221"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2013"
+     inkscape:window-height="1107"
+     inkscape:window-x="1600"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#800000;fill-opacity:0.98689955;fill-rule:evenodd;stroke:none;stroke-width:3.96875;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect819"
+       width="353.78571"
+       height="278.94644"
+       x="-115.66071"
+       y="36.952377" />
+    <rect
+       style="opacity:1;fill:url(#radialGradient827);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.96875;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect817"
+       width="93.738091"
+       height="93.738091"
+       x="18.898809"
+       y="120.86309"
+       inkscape:export-filename="/Users/nightmare/git/Ketchapp/Ketchapp/Assets/CarVsCops/Images/FX.png"
+       inkscape:export-xdpi="27.096777"
+       inkscape:export-ydpi="27.096777" />
+  </g>
+</svg>
