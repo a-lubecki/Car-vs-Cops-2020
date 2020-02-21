@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private TimerBehavior scoreTimerBehavior;
     [SerializeField] private BoostManager boostManager;
+    [SerializeField] private UIManager uiManager;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
@@ -16,12 +17,6 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
     private bool isPlaying;
     private bool isGameOver;
-
-    public bool IsBoostEnabled {
-        get {
-            return boostManager.IsBoostEnabled();
-        }
-    }
 
 
     void Awake() {
@@ -57,6 +52,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
         carControlsManager.SetControlsEnabled(false);
 
+        uiManager.ShowUIOnboarding(true);
+
         itemGeneratorBehavior.DespawnAll();
 
         //deactivate and reactivate to fully init the main car
@@ -66,9 +63,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         mainCarBehavior.transform.position = Vector3.zero;
         goMainCar.SetActive(true);
 
-        mainCarBehavior.Init();
-
-        scoreManager.Score = 0;
+        SetScore(0);
     }
 
     public void StartPlaying() {
@@ -82,8 +77,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
         carControlsManager.SetControlsEnabled(true);
 
+        uiManager.ShowUIHUD(true);
+
         SpawnNewEnemies(4);
-        SpawnNewObstacles(30);
+        SpawnNewObstacles(50);
         SpawnNewHeart(1);
 
         scoreTimerBehavior.StartTimer();
@@ -99,6 +96,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         isGameOver = true;
 
         carControlsManager.SetControlsEnabled(false);
+
+        uiManager.ShowUIGameOver(true);
 
         scoreTimerBehavior.StopTimer();
     }
@@ -122,7 +121,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
 
         var enemyBehavior = goItem.GetComponent<EnemyBehavior>();
         if (enemyBehavior != null) {
-            OnEnemyDestroyed(enemyBehavior);
+            OnEnemyDestroyed(enemyBehavior, enemyBehavior.HasExploded);
         }
 
         var obstacleBehavior = goItem.GetComponent<ObstacleBehavior>();
@@ -136,14 +135,14 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         }
     }
 
-    private void OnEnemyDestroyed(EnemyBehavior enemyBehavior) {
+    private void OnEnemyDestroyed(EnemyBehavior enemyBehavior, bool hasExploded) {
 
         if (!isPlaying && !isGameOver) {
             return;
         }
 
         //handle score only when playing and no gameover
-        if (isPlaying) {
+        if (isPlaying && hasExploded) {
 
             //increment multiplier before adding score
             if (boostManager.IsBoostEnabled()) {
@@ -155,7 +154,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
             if (boostManager.IsBoostEnabled()) {
                 newScore = 4 * boostManager.BoostMultiplier;
             }
-            scoreManager.Score += newScore;
+
+            AddValueToScore(newScore, true);
         }
 
         SpawnNewEnemies(1);
@@ -207,7 +207,25 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
             return;
         }
 
-        scoreManager.Score++;
+        AddValueToScore(1, false);
+    }
+
+    private void SetScore(int score) {
+
+        scoreManager.Score = score;
+
+        uiManager.UpdateScore(scoreManager.Score, 0, true);
+    }
+
+    private void AddValueToScore(int addedValue, bool displayAddedValue) {
+
+        scoreManager.Score += addedValue;
+
+        uiManager.UpdateScore(
+            scoreManager.Score,
+            displayAddedValue ? addedValue : 0,
+            true
+        );
     }
 
 }

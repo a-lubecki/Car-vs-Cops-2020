@@ -10,6 +10,8 @@ public abstract class VehicleBehavior : MonoBehaviour {
     protected Collider PhysicsCollider { get; private set; }
     protected Collider TriggerCollider { get; private set; }
 
+    public bool HasExploded { get; private set; }
+
 
     void Awake() {
 
@@ -20,8 +22,11 @@ public abstract class VehicleBehavior : MonoBehaviour {
     void OnEnable() {
 
         lifeBehavior.isInvincible = false;
-
         UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
+
+        HasExploded = false;
+
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 
     void OnDisable() {
@@ -40,20 +45,15 @@ public abstract class VehicleBehavior : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
     }
 
-    public void Init() {
-
-        GetComponent<Rigidbody>().isKinematic = false;
-    }
-
     ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
-    protected bool TryLoseLife() {
+    protected bool TryLoseLife(int value) {
 
         if (lifeBehavior.isInvincible) {
             //nothing happens to the vehicle if invincible
             return false;
         }
 
-        lifeBehavior.DecrementLife();
+        lifeBehavior.DecrementLife(value);
 
         if (lifeBehavior.IsDead()) {
             Explode();
@@ -80,16 +80,14 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     protected abstract void UpdateInvincibilityDisplay(bool isInvincible);
 
-    public void Explode() {
-
-        if (!gameObject.activeSelf) {
-            return;
-        }
+    protected void Explode() {
 
         GetComponent<Rigidbody>().isKinematic = true;
 
 
         ///TODO explosion
+
+        HasExploded = true;
 
         OnVehicleExplode();
     }
@@ -98,9 +96,9 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         var goOther = collision.gameObject;
 
-        var enemyBehavior = goOther.GetComponent<EnemyBehavior>();
-        if (enemyBehavior != null) {
-            OnCollisionWithEnemy(enemyBehavior);
+        var vehicleBehavior = goOther.GetComponent<VehicleBehavior>();
+        if (vehicleBehavior != null) {
+            OnCollisionWithVehicle(vehicleBehavior);
         }
 
         var obstacleBehavior = goOther.GetComponent<ObstacleBehavior>();
@@ -123,7 +121,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
     }
 
-    protected abstract void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior);
+    protected abstract void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior);
 
     protected abstract void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior);
 

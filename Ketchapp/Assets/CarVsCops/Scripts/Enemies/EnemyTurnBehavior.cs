@@ -17,7 +17,6 @@ public class EnemyTurnBehavior : BaseTurnBehavior {
         alignmentRangeDegree = UnityEngine.Random.Range(10, 90);
     }
 
-
     public void InitTargetToFollow(Transform trTargetToFollow) {
 
         this.trTargetToFollow = trTargetToFollow ?? throw new ArgumentException();

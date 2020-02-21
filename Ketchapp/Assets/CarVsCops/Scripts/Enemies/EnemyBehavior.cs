@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class EnemyBehavior : VehicleBehavior {
@@ -13,16 +12,22 @@ public class EnemyBehavior : VehicleBehavior {
     }
 
 
-    protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
+    protected override void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior) {
 
-        TryLoseLife();
+        if (vehicleBehavior is MainCarBehavior) {
+            //an enemy can't lose life if touching the main car
+            return;
+        }
+
+        TryLoseLife(1);
     }
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
 
         obstacleBehavior.Explode();
 
-        Explode();
+        //more damages with an obstacle for more strategies
+        TryLoseLife(2);
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {

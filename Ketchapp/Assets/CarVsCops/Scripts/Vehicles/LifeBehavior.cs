@@ -4,7 +4,7 @@ public class LifeBehavior : MonoBehaviour {
 
 
     [SerializeField] private int maxLife = 3;
-    [SerializeField] private int life;
+    private int life;
     public bool isInvincible;
 
 
@@ -32,18 +32,18 @@ public class LifeBehavior : MonoBehaviour {
         return life <= 0;
     }
 
-    public void IncrementLife() {
-        Life++;
+    public void IncrementLife(int value = 1) {
+        Life += value;
     }
 
-    public void DecrementLife() {
+    public void DecrementLife(int value = 1) {
 
         if (isInvincible) {
             //can't lose life
             return;
         }
 
-        Life--;
+        Life -= value;
     }
 
 }

@@ -19,7 +19,6 @@ public class ItemGeneratorBehavior : BaseGeneratorBehavior {
         foreach (var go in res) {
             go.GetComponent<EnemyTurnBehavior>()?.InitTargetToFollow(goMainCar.transform);
             go.GetComponent<EnemySpeedBehavior>()?.InitTargetToFollow(goMainCar.transform);
-            go.GetComponent<EnemyBehavior>().Init();
         }
 
         return res;

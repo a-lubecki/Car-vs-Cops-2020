@@ -37,9 +37,12 @@ public class TimerBehavior : MonoBehaviour {
 
     private IEnumerator Run() {
 
-        yield return new WaitForSeconds(1);
+        while (isRunning) {
+            
+            yield return new WaitForSeconds(1);
 
-        listener.OnTimerTick();
+            listener.OnTimerTick();
+        }
     }
 
     public void StopTimer() {

@@ -22,13 +22,13 @@ public class MainCarBehavior : VehicleBehavior {
 
     private void HandleDamage() {
 
-        var hasLostLife = TryLoseLife();
+        var hasLostLife = TryLoseLife(1);
         if (hasLostLife) {
             Camera.main.DOShakePosition(0.5f, 2, 20);
         }
     }
 
-    protected override void OnCollisionWithEnemy(VehicleBehavior vehicleBehavior) {
+    protected override void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior) {
 
         HandleDamage();
     }
