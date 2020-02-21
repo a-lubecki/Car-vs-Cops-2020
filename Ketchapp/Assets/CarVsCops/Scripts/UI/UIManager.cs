@@ -4,10 +4,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
 
 
-    [SerializeField] private UIOnboardingBehavior uiOnboardingBehavior;
-    [SerializeField] private UIGameOverBehavior uiGameOverBehavior;
-    [SerializeField] private UIHUDBehavior uiHudBehavior;
-    [SerializeField] private UIComboBehavior uiComboBehavior;
+    [SerializeField] private UIOnboardingBehavior uiOnboardingBehavior = null;
+    [SerializeField] private UIGameOverBehavior uiGameOverBehavior = null;
+    [SerializeField] private UIHUDBehavior uiHudBehavior = null;
+    [SerializeField] private UIComboBehavior uiComboBehavior = null;
 
 
     public void ShowUIOnboarding(bool animated) {

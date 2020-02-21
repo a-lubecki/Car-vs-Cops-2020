@@ -5,7 +5,7 @@ using UnityEngine;
 public class TireTrailsBehavior : MonoBehaviour {
 
 
-    [SerializeField] private TrailRenderer[] tireTrailRenderers;
+    [SerializeField] private TrailRenderer[] tireTrailRenderers = null;
 
 
     void Awake() {

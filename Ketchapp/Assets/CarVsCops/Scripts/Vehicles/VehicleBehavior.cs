@@ -5,7 +5,7 @@ using System.Collections;
 public abstract class VehicleBehavior : MonoBehaviour {
 
 
-    [SerializeField] private LifeBehavior lifeBehavior;
+    [SerializeField] private LifeBehavior lifeBehavior = null;
 
     protected Collider PhysicsCollider { get; private set; }
     protected Collider TriggerCollider { get; private set; }
@@ -21,12 +21,13 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     void OnEnable() {
 
-        lifeBehavior.isInvincible = false;
-        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
-
         HasExploded = false;
 
         GetComponent<Rigidbody>().isKinematic = false;
+
+        //set invincible and fake display until InitLife is called
+        lifeBehavior.isInvincible = true;
+        UpdateInvincibilityDisplay(false);
     }
 
     void OnDisable() {
@@ -45,6 +46,14 @@ public abstract class VehicleBehavior : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
     }
 
+    public void InitLife() {
+
+        lifeBehavior.isInvincible = false;
+        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
+
+        lifeBehavior.Life = lifeBehavior.MaxLife;
+    }
+
     ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
     protected bool TryLoseLife(int value) {
 
@@ -53,7 +62,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
             return false;
         }
 
-        lifeBehavior.DecrementLife(value);
+        lifeBehavior.TryDecrementLife(value);
 
         if (lifeBehavior.IsDead()) {
             Explode();

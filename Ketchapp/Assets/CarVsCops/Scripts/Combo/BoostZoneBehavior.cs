@@ -7,7 +7,7 @@ using DG.Tweening;
 public class BoostZoneBehavior : MonoBehaviour {
 
 
-    [SerializeField] private BoostGaugeBehavior boostGaugeBehavior;
+    [SerializeField] private BoostGaugeBehavior boostGaugeBehavior = null;
 
     private Image imageZone;
     private Collider zoneCollider;

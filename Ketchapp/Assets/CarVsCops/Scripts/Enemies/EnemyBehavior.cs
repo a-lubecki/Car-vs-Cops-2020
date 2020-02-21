@@ -4,7 +4,7 @@
 public class EnemyBehavior : VehicleBehavior {
 
 
-    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior = null;
 
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {

@@ -4,7 +4,7 @@ using UnityEngine;
 public class TargetTrackerBehavior : MonoBehaviour {
 
 
-    [SerializeField] private Transform trTargetToFollow;
+    [SerializeField] private Transform trTargetToFollow = null;
 
 
     void Update() {

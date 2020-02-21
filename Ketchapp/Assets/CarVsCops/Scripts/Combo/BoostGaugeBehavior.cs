@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class BoostGaugeBehavior : MonoBehaviour {
 
 
-    [SerializeField] private float speedIncrement;
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private float speedIncrement = 0;
+    [SerializeField] private GameManager gameManager = null;
 
     private Image imageGauge;
 

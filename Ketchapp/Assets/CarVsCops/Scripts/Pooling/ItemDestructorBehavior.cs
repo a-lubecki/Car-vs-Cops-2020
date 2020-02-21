@@ -1,17 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Lean.Pool;
 
 
 public class ItemDestructorBehavior : MonoBehaviour {
 
 
+    [SerializeField] private float distanceFromCenter = 500;
     private LeanGameObjectPool pool;
     private Transform trDropPoint;
-    [SerializeField] private float distanceFromCenter = 500;
-    private IItemDestructorBehaviorListener listener;
+
     ///a boolean indicating that the object is destroying and can't call the destroy method again
     private bool isDestroying;
+
+    public IItemDestructorBehaviorListener listener;
 
 
     public void Init(LeanGameObjectPool pool, Transform trDropPoint, IItemDestructorBehaviorListener listener) {

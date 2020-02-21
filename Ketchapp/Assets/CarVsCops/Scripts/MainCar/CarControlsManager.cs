@@ -4,12 +4,15 @@
 public class CarControlsManager : MonoBehaviour {
 
 
-    [SerializeField] private GameObject goListener;
+    public GameObject goListener;
 
     private bool controlsEnabled = true;
 
     private ICarControlsManagerListener Listener {
         get {
+            if (goListener == null) {
+                return null;
+            }
             return goListener?.GetComponent<ICarControlsManagerListener>();
         }
     }

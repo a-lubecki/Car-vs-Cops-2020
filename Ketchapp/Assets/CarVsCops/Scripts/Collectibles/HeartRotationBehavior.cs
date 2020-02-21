@@ -4,7 +4,7 @@
 public class HeartRotationBehavior : MonoBehaviour {
 
 
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotationSpeed = 0;
 
 
     void Update() {

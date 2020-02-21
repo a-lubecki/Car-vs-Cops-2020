@@ -3,7 +3,7 @@
 public abstract class CollectibleBehavior : MonoBehaviour {
 
 
-    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior = null;
 
 
     public void Collect() {

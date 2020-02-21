@@ -5,11 +5,14 @@ using UnityEngine;
 public class TimerBehavior : MonoBehaviour {
 
 
-    [SerializeField] private GameObject goListener;
+    public GameObject goListener;
 
-    private IScoreTimerManagerListener listener {
+    private IScoreTimerManagerListener Listener {
         get {
-            return goListener.GetComponent<IScoreTimerManagerListener>();
+            if (goListener == null) {
+                return null;
+            }
+            return goListener?.GetComponent<IScoreTimerManagerListener>();
         }
     }
 
@@ -38,10 +41,10 @@ public class TimerBehavior : MonoBehaviour {
     private IEnumerator Run() {
 
         while (isRunning) {
-            
+
             yield return new WaitForSeconds(1);
 
-            listener.OnTimerTick();
+            Listener?.OnTimerTick();
         }
     }
 

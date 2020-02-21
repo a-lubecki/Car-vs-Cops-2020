@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleBehavior : MonoBehaviour {
 
 
-    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior;
+    [SerializeField] private ItemDestructorBehavior itemDestructorBehavior = null;
 
 
     public void Explode() {

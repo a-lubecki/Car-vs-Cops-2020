@@ -916,7 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1774,6 +1774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textScore: {fileID: 1802737660}
   textAddedScoreValue: {fileID: 654513903}
+  uiLifeBar: {fileID: 0}
   textBoost: {fileID: 1411361827}
   boostManager: {fileID: 841414715}
   boostGaugeBehavior: {fileID: 1190002697}
@@ -2203,7 +2204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2307,6 +2308,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379994841}
+  - component: {fileID: 1379994842}
+  - component: {fileID: 1379994843}
   m_Layer: 5
   m_Name: Hearts
   m_TagString: Untagged
@@ -2336,6 +2339,34 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -110}
   m_SizeDelta: {x: 230, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &1379994842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379994840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5550ba8c1ad7f4924b85b9eb70494e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 1274294916}
+  - {fileID: 633725118}
+  - {fileID: 890826366}
+--- !u!225 &1379994843
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379994840}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1411361825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,6 +3569,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1026921830065072640, guid: 4fc0d89e4dc17467f8ee7fa68a61e223,
+        type: 3}
+      propertyPath: goListener
+      value: 
+      objectReference: {fileID: 1379994840}
     - target: {fileID: 3088707588534220243, guid: 4fc0d89e4dc17467f8ee7fa68a61e223,
         type: 3}
       propertyPath: m_Materials.Array.size

@@ -6,12 +6,12 @@ using DG.Tweening;
 public class UIHUDBehavior : BaseUIBehavior {
 
 
-    [SerializeField] private TextMeshProUGUI textScore;
-    [SerializeField] private TextMeshProUGUI textAddedScoreValue;
-    [SerializeField] private TextMeshProUGUI textBoost;
+    [SerializeField] private TextMeshProUGUI textScore = null;
+    [SerializeField] private TextMeshProUGUI textAddedScoreValue = null;
+    [SerializeField] private TextMeshProUGUI textBoost = null;
 
-    [SerializeField] private BoostManager boostManager;
-    [SerializeField] private BoostGaugeBehavior boostGaugeBehavior;
+    [SerializeField] private ComboManager boostManager = null;
+    [SerializeField] private BoostGaugeBehavior boostGaugeBehavior = null;
 
 
     //optim: this boolean is used to avoid calling the DOTween fade method every Update call
@@ -43,7 +43,7 @@ public class UIHUDBehavior : BaseUIBehavior {
 
     public void UpdateTextBoost(bool animated, bool forceUpdate) {
 
-        var isTextBoostActive = boostGaugeBehavior.IsIncrementing && !boostManager.IsBoostEnabled();
+        var isTextBoostActive = boostGaugeBehavior.IsIncrementing && !boostManager.IsComboEnabled();
         if (!forceUpdate && isTextBoostActive == isDisplayingBoost) {
             //previously updated
             return;

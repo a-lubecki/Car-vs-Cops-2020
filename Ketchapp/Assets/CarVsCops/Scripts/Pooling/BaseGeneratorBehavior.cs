@@ -7,9 +7,9 @@ using Lean.Pool;
 public class BaseGeneratorBehavior : MonoBehaviour {
 
 
-    [SerializeField] private Transform trDropPoint;
-    [SerializeField] private float minGenerationDistance;
-    [SerializeField] private float maxGenerationDistance;
+    [SerializeField] private Transform trDropPoint = null;
+    [SerializeField] private float minGenerationDistance = 0;
+    [SerializeField] private float maxGenerationDistance = 0;
 
 
     public List<GameObject> SpawnObjects(int count, LeanGameObjectPool pool, bool mustFaceGenerationCenter, IItemDestructorBehaviorListener listener) {

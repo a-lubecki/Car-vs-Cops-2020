@@ -4,7 +4,7 @@ using UnityEngine;
 public class GroundTreadmillBehavior : MonoBehaviour {
 
 
-    [SerializeField] private Transform trTargetToFollow;
+    [SerializeField] private Transform trTargetToFollow = null;
 
     private MeshRenderer meshRenderer;
 

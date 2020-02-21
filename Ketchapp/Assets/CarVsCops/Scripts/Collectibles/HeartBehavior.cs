@@ -14,7 +14,7 @@ public class HeartBehavior : CollectibleBehavior {
 
     protected override void OnCollected() {
 
-        lifeBehavior.IncrementLife();
+        lifeBehavior.TryIncrementLife();
     }
 
 }

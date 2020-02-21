@@ -6,9 +6,9 @@ using Lean.Pool;
 public class ItemGeneratorBehavior : BaseGeneratorBehavior {
 
 
-    [SerializeField] private LeanGameObjectPool poolPoliceCar;
-    [SerializeField] private LeanGameObjectPool poolObstacles;
-    [SerializeField] private LeanGameObjectPool poolHearts;
+    [SerializeField] private LeanGameObjectPool poolPoliceCar = null;
+    [SerializeField] private LeanGameObjectPool poolObstacles = null;
+    [SerializeField] private LeanGameObjectPool poolHearts = null;
 
 
     public List<GameObject> SpawnPoliceCars(int count, IItemDestructorBehaviorListener listener, GameObject goMainCar) {
@@ -19,6 +19,7 @@ public class ItemGeneratorBehavior : BaseGeneratorBehavior {
         foreach (var go in res) {
             go.GetComponent<EnemyTurnBehavior>()?.InitTargetToFollow(goMainCar.transform);
             go.GetComponent<EnemySpeedBehavior>()?.InitTargetToFollow(goMainCar.transform);
+            go.GetComponent<VehicleBehavior>()?.InitLife();
         }
 
         return res;

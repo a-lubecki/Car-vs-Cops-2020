@@ -7,15 +7,25 @@ public abstract class BaseUIBehavior : MonoBehaviour {
 
     private CanvasGroup canvasGroup;
 
+    public bool IsShown { get; private set; }
+
 
     void Awake() {
 
         canvasGroup = GetComponent<CanvasGroup>();
 
+        IsShown = true;
         Hide(false);
     }
 
     public void Show(bool animated) {
+
+        if (IsShown) {
+            //already shown
+            return;
+        }
+
+        IsShown = true;
 
         canvasGroup.DOFade(1, animated ? 0.5f : 0);
 
@@ -23,6 +33,13 @@ public abstract class BaseUIBehavior : MonoBehaviour {
     }
 
     public void Hide(bool animated) {
+
+        if (!IsShown) {
+            //already hidden
+            return;
+        }
+
+        IsShown = false;
 
         canvasGroup.DOFade(0, animated ? 0.5f : 0);
 

@@ -4,12 +4,12 @@
 public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScoreTimerManagerListener {
 
 
-    [SerializeField] private GameObject goMainCar;
-    [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior;
-    [SerializeField] private ScoreManager scoreManager;
-    [SerializeField] private TimerBehavior scoreTimerBehavior;
-    [SerializeField] private BoostManager boostManager;
-    [SerializeField] private UIManager uiManager;
+    [SerializeField] private GameObject goMainCar = null;
+    [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior = null;
+    [SerializeField] private ScoreManager scoreManager = null;
+    [SerializeField] private TimerBehavior scoreTimerBehavior = null;
+    [SerializeField] private ComboManager boostManager = null;
+    [SerializeField] private UIManager uiManager = null;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         isGameOver = false;
 
         carControlsManager.SetControlsEnabled(true);
+        mainCarBehavior.InitLife();
 
         uiManager.ShowUIHUD(true);
 
@@ -145,14 +146,14 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
         if (isPlaying && hasExploded) {
 
             //increment multiplier before adding score
-            if (boostManager.IsBoostEnabled()) {
-                boostManager.BoostMultiplier++;
+            if (boostManager.IsComboEnabled()) {
+                boostManager.ComboMultiplier++;
             }
 
             //calculate new score including multiplier
             var newScore = 6;
-            if (boostManager.IsBoostEnabled()) {
-                newScore = 4 * boostManager.BoostMultiplier;
+            if (boostManager.IsComboEnabled()) {
+                newScore = 4 * boostManager.ComboMultiplier;
             }
 
             AddValueToScore(newScore, true);
@@ -193,11 +194,11 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScor
     private void SetBoostEnabled(bool enabled) {
 
         if (enabled) {
-            if (!boostManager.IsBoostEnabled()) {
-                boostManager.BoostMultiplier = 1;
+            if (!boostManager.IsComboEnabled()) {
+                boostManager.ComboMultiplier = 1;
             }
         } else {
-            boostManager.BoostMultiplier = 0;
+            boostManager.ComboMultiplier = 0;
         }
     }
 

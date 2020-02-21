@@ -3,7 +3,7 @@
 public abstract class BaseTurnBehavior : MonoBehaviour {
 
 
-    [SerializeField] private float maxRotationAnglePerSec = 200f;
+    [SerializeField] private float maxRotationAnglePerSec = 200;
 
     public bool MustRotateLeft { get; protected set; }
     public bool MustRotateRight { get; protected set; }

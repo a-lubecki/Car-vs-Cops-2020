@@ -5,9 +5,9 @@ using DG.Tweening;
 public class MainCarBehavior : VehicleBehavior {
 
 
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject goModel;
-    [SerializeField] private GameObject goModelFaded;
+    [SerializeField] private GameManager gameManager = null;
+    [SerializeField] private GameObject goModel = null;
+    [SerializeField] private GameObject goModelFaded = null;
 
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {

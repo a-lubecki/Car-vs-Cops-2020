@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpeedBehavior : MonoBehaviour {
 
 
-    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxSpeed = 0;
 
     private Transform trTargetToFollow;
     private ConstantForce force;
