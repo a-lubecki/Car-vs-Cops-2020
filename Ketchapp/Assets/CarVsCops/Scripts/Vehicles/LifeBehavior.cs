@@ -33,9 +33,9 @@ public class LifeBehavior : MonoBehaviour {
 
             var previousLife = life;
 
-            if (life < 0) {
+            if (value < 0) {
                 life = 0;
-            } else if (life > maxLife) {
+            } else if (value > maxLife) {
                 life = maxLife;
             } else {
                 life = value;

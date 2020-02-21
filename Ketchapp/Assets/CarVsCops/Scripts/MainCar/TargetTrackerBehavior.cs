@@ -5,17 +5,31 @@ public class TargetTrackerBehavior : MonoBehaviour {
 
 
     [SerializeField] private Transform trTargetToFollow = null;
+
+    [SerializeField] private bool mustTrackPosition = false;
     [SerializeField] private bool mustTrackRotation = false;
+    [SerializeField] private bool mustChildrenTrackActiveSelf = false;
 
 
     protected void Update() {
 
-        //track the target
-        transform.position = trTargetToFollow.position;
+        if (mustTrackPosition) {
+            transform.position = trTargetToFollow.position;
+        }
 
         if (mustTrackRotation) {
             transform.localRotation = trTargetToFollow.localRotation;
         }
+
+        if (mustChildrenTrackActiveSelf) {
+
+            var isTargetActive = trTargetToFollow.gameObject.activeSelf;
+
+            foreach (Transform t in transform) {
+                t.gameObject.SetActive(isTargetActive);
+            }
+        }
+
     }
 
 }
