@@ -1016,6 +1016,7 @@ GameObject:
   - component: {fileID: 841414713}
   - component: {fileID: 841414716}
   - component: {fileID: 841414715}
+  - component: {fileID: 841414717}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1038,6 +1039,7 @@ MonoBehaviour:
   goMainCar: {fileID: 1977431166}
   itemGeneratorBehavior: {fileID: 479219185}
   scoreManager: {fileID: 841414716}
+  scoreTimerBehavior: {fileID: 841414717}
   boostManager: {fileID: 841414715}
 --- !u!4 &841414714
 Transform:
@@ -1077,6 +1079,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabfdf863ce534c468a6544f7890c975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &841414717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841414712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e5d993827994d2897950fbf2f48162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goListener: {fileID: 841414712}
 --- !u!1 &868063451
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
 
-public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
+public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IScoreTimerManagerListener {
 
 
     [SerializeField] private GameObject goMainCar;
     [SerializeField] private ItemGeneratorBehavior itemGeneratorBehavior;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private TimerBehavior scoreTimerBehavior;
     [SerializeField] private BoostManager boostManager;
 
     private CarControlsManager carControlsManager;
@@ -84,6 +85,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         SpawnNewEnemies(4);
         SpawnNewObstacles(30);
         SpawnNewHeart(1);
+
+        scoreTimerBehavior.StartTimer();
     }
 
     public void StopPlaying() {
@@ -96,6 +99,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         isGameOver = true;
 
         carControlsManager.SetControlsEnabled(false);
+
+        scoreTimerBehavior.StopTimer();
     }
 
     private void SpawnNewEnemies(int count) {
@@ -194,6 +199,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener {
         } else {
             boostManager.BoostMultiplier = 0;
         }
+    }
+
+    public void OnTimerTick() {
+
+        if (!isPlaying) {
+            return;
+        }
+
+        scoreManager.Score++;
     }
 
 }
