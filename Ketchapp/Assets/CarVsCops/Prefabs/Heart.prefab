@@ -1,18 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &5460226768871724938
-CapsuleCollider:
+--- !u!135 &3178026338254990076
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6264307391675896153}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 4
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 1.5
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &4377446506922306058
 MonoBehaviour:

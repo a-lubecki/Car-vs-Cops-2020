@@ -26,8 +26,8 @@ public class EnemyBehavior : VehicleBehavior {
 
         obstacleBehavior.Explode();
 
-        //more damages with an obstacle for more strategies
-        TryLoseLife(2);
+        //more damages with an obstacle for more strategies + the enemy lose invincibility
+        TryLoseLife(2, true);
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {

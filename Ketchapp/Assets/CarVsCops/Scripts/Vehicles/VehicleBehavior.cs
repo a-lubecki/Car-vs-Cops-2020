@@ -48,14 +48,17 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     public void InitLife() {
 
-        lifeBehavior.isInvincible = false;
-        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
+        SetInvincible(false);
 
         lifeBehavior.Life = lifeBehavior.MaxLife;
     }
 
     ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
-    protected bool TryLoseLife(int value) {
+    protected bool TryLoseLife(int value, bool force = false) {
+
+        if (force) {
+            SetInvincible(false);
+        }
 
         if (lifeBehavior.isInvincible) {
             //nothing happens to the vehicle if invincible
@@ -75,15 +78,17 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     private IEnumerator SetInvincibleForDuration() {
 
-        lifeBehavior.isInvincible = true;
-
-        UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
+        SetInvincible(true);
 
         //set invincible for 3sec
         yield return new WaitForSeconds(3);
 
-        lifeBehavior.isInvincible = false;
+        SetInvincible(false);
+    }
 
+    private void SetInvincible(bool invincible) {
+
+        lifeBehavior.isInvincible = invincible;
         UpdateInvincibilityDisplay(lifeBehavior.isInvincible);
     }
 
@@ -127,6 +132,11 @@ public abstract class VehicleBehavior : MonoBehaviour {
         var collectibleBehavior = collider.GetComponent<CollectibleBehavior>();
         if (collectibleBehavior != null) {
             OnCollisionWithCollectible(collectibleBehavior);
+        }
+
+        var obstacleBehavior = collider.GetComponent<ObstacleBehavior>();
+        if (obstacleBehavior != null) {
+            OnCollisionWithObstacle(obstacleBehavior);
         }
     }
 
