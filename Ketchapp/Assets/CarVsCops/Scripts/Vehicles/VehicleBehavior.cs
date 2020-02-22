@@ -11,8 +11,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
     protected Collider PhysicsCollider { get; private set; }
     protected Collider TriggerCollider { get; private set; }
 
-    public bool HasExploded { get; private set; }
-
 
     protected void Awake() {
 
@@ -21,8 +19,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
     }
 
     protected void OnEnable() {
-
-        HasExploded = false;
 
         GetComponent<Rigidbody>().isKinematic = false;
 
@@ -116,12 +112,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         GetComponent<Rigidbody>().isKinematic = true;
 
-
-        ///TODO explosion
-
-        HasExploded = true;
-
-        OnVehicleExplode();
+        OnVehicleExplosionRequired();
     }
 
     protected void OnCollisionEnter(Collision collision) {
@@ -164,6 +155,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     protected abstract void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior);
 
-    protected abstract void OnVehicleExplode();
+    protected abstract void OnVehicleExplosionRequired();
 
 }

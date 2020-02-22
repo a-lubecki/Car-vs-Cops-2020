@@ -120,11 +120,11 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         itemGeneratorBehavior.SpawnNewHearts(count, this, mainCarLifeBehavior);
     }
 
-    public void OnItemDestroyed(GameObject goItem) {
+    public void OnItemDestroyed(GameObject goItem, bool hasExploded) {
 
         var enemyBehavior = goItem.GetComponent<EnemyBehavior>();
         if (enemyBehavior != null) {
-            OnEnemyDestroyed(enemyBehavior, enemyBehavior.HasExploded);
+            OnEnemyDestroyed(enemyBehavior, hasExploded);
         }
 
         var obstacleBehavior = goItem.GetComponent<ObstacleBehavior>();

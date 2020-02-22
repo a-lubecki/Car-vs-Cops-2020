@@ -14,12 +14,19 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
     public IItemDestructorBehaviorListener listener;
 
+    private LeanGameObjectPool poolExplosion;
+
 
     public void Init(LeanGameObjectPool pool, Transform trDropPoint, IItemDestructorBehaviorListener listener) {
 
         this.pool = pool;
         this.trDropPoint = trDropPoint;
         this.listener = listener;
+    }
+
+    public void InitPoolExplosion(LeanGameObjectPool poolExplosion) {
+
+        this.poolExplosion = poolExplosion;
     }
 
     protected void OnDisable() {
@@ -36,26 +43,47 @@ public class ItemDestructorBehavior : MonoBehaviour {
         }
     }
 
+    public void ExplodeCurrentItem() {
+
+        //save position and rotation now as the item will be pooled
+        var initialPos = transform.position;
+        var initialRot = transform.rotation;
+
+        bool hasDestroyed = TryDestroyCurrentItem(true);
+
+        if (hasDestroyed) {
+            poolExplosion.Spawn(initialPos, initialRot);
+        }
+    }
+
     public void DestroyCurrentItem() {
+
+        TryDestroyCurrentItem(false);
+    }
+
+    ///try to destroy then return true if it has been well destroyed
+    private bool TryDestroyCurrentItem(bool hasExploded) {
 
         if (!gameObject.activeSelf) {
             //can't destroy if not active
-            return;
+            return false;
         }
         if (isDestroying) {
             //the DestroyCurrentItem() has already been called, it can be cause by a recursion loop due to the previous listener notify
-            return;
+            return false;
         }
 
         isDestroying = true;
 
         //notify the listener before despawning to be able to get info about the object in the OnItemDestroyed()
-        listener?.OnItemDestroyed(gameObject);
+        listener?.OnItemDestroyed(gameObject, hasExploded);
 
         //avoid destroying if the OnDisable has been called by the listener notify
         if (gameObject.activeSelf && isDestroying) {
             pool.Despawn(gameObject);
         }
+
+        return true;
     }
 
 }
@@ -63,6 +91,6 @@ public class ItemDestructorBehavior : MonoBehaviour {
 
 public interface IItemDestructorBehaviorListener {
 
-    void OnItemDestroyed(GameObject goItem);
+    void OnItemDestroyed(GameObject goItem, bool hasExploded);
 
 }

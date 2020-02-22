@@ -8,9 +8,7 @@ public class ObstacleBehavior : MonoBehaviour {
 
     public void Explode() {
 
-        ///TODO explosion
-
-        itemDestructorBehavior.DestroyCurrentItem();
+        itemDestructorBehavior.ExplodeCurrentItem();
     }
 
 }

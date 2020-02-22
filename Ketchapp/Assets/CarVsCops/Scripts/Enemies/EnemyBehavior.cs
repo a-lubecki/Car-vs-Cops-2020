@@ -35,9 +35,9 @@ public class EnemyBehavior : VehicleBehavior {
         collectibleBehavior.Destroy();
     }
 
-    protected override void OnVehicleExplode() {
+    protected override void OnVehicleExplosionRequired() {
 
-        itemDestructorBehavior.DestroyCurrentItem();
+        itemDestructorBehavior.ExplodeCurrentItem();
     }
 
 }

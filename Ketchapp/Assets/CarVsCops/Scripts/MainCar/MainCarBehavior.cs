@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Lean.Pool;
 
 
 public class MainCarBehavior : VehicleBehavior {
@@ -8,6 +9,7 @@ public class MainCarBehavior : VehicleBehavior {
     [SerializeField] private GameManager gameManager = null;
     [SerializeField] private GameObject goModel = null;
     [SerializeField] private GameObject goModelFaded = null;
+    [SerializeField] private LeanGameObjectPool poolExplosion = null;
 
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {
@@ -48,7 +50,9 @@ public class MainCarBehavior : VehicleBehavior {
         UpdateDamageParticles();
     }
 
-    protected override void OnVehicleExplode() {
+    protected override void OnVehicleExplosionRequired() {
+
+        poolExplosion.Spawn(transform.position, transform.rotation);
 
         gameObject.SetActive(false);
 
