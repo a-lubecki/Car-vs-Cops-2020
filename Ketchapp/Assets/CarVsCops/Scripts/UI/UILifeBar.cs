@@ -3,16 +3,11 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 
-public class UILifeBar : MonoBehaviour, ILifeBehaviorListener {
+public class UILifeBar : MonoBehaviour {
 
 
     [SerializeField] private RawImage[] hearts = null;
 
-
-    public void OnLifeChange(int life, int previousLife) {
-
-        UpdateLife(life, previousLife, true);
-    }
 
     public void UpdateLife(int life, int previousLife, bool animated) {
 

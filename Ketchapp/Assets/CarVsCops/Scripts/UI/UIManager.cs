@@ -43,9 +43,9 @@ public class UIManager : MonoBehaviour {
         uiComboBehavior.Hide(animated);
     }
 
-    public void UpdateScore(int score, int addedValue, bool animated) {
+    public void UpdateLife(int life, int previousLife, bool animated) {
 
-        uiHudBehavior.UpdateTextScore(score, addedValue, animated);
+        uiHudBehavior.UpdateLife(life, previousLife, animated);
     }
 
     public void UpdateBoost(bool displayed, float percentage) {
@@ -56,6 +56,11 @@ public class UIManager : MonoBehaviour {
     public void UpdateComboMultiplier(int multiplier, bool animated) {
 
         uiComboBehavior.UpdateMultiplier(multiplier, animated);
+    }
+
+    public void UpdateScore(int score, int addedValue, bool animated) {
+
+        uiHudBehavior.UpdateTextScore(score, addedValue, animated);
     }
 
 }

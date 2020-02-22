@@ -9,12 +9,18 @@ public class UIHUDBehavior : BaseUIBehavior {
     [SerializeField] private TextMeshProUGUI textScore = null;
     [SerializeField] private TextMeshProUGUI textAddedScoreValue = null;
     [SerializeField] private TextMeshProUGUI textBoost = null;
+    [SerializeField] private UILifeBar uiLifeBar = null;
 
 
     protected void Start() {
 
         textAddedScoreValue.alpha = 0;
         UpdateTextBoostAlpha(false, 0);
+    }
+
+    public void UpdateLife(int life, int previousLife, bool animated) {
+
+        uiLifeBar.UpdateLife(life, previousLife, animated);
     }
 
     public void UpdateTextScore(int score, int addedValue, bool animated) {

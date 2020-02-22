@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
-public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoostGaugeBehaviorListener, IComboBehaviorListener, IScoreTimerManagerListener {
+public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILifeBehaviorListener,
+    IBoostGaugeBehaviorListener, IComboBehaviorListener, IScoreTimerManagerListener {
 
 
     [SerializeField] private GameObject goMainCar = null;
@@ -10,7 +12,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
     [SerializeField] private TimerBehavior scoreTimerBehavior = null;
     [SerializeField] private ComboBehavior comboBehavior = null;
     [SerializeField] private UIManager uiManager = null;
-    [SerializeField] private MusicBehavior musicBehavior = null;
+    [SerializeField] private AudioBehavior audioBehavior = null;
+    [SerializeField] private RandomSoundsBehavior randomSoundsBehavior = null;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
     protected void Start() {
 
-        ShowOnboarding();
+        ShowOnboarding(true);
     }
 
     protected void Update() {
@@ -37,14 +40,14 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         if (Input.GetMouseButtonDown(0)) {
 
             if (isGameOver) {
-                ShowOnboarding();
+                ShowOnboarding(false);
             } else if (!isPlaying) {
                 StartPlaying();
             }
         }
     }
 
-    public void ShowOnboarding() {
+    public void ShowOnboarding(bool isFreshStart) {
 
         StopPlaying();
 
@@ -55,9 +58,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
         itemGeneratorBehavior.DespawnAll();
 
-        //deactivate and reactivate to fully init the main car
-        //the game object couldn't be deactivated during the car explosion because
-        //some elements must be kept in the scene : camera, chasing target, etc
+        //reinit the main car
         mainCarBehavior.transform.rotation = Quaternion.identity;
         mainCarBehavior.transform.position = Vector3.zero;
         goMainCar.SetActive(true);
@@ -66,7 +67,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
         uiManager.ShowUIOnboarding(true);
 
-        musicBehavior.PlayMusicMenu();
+        audioBehavior.PlayMusicMenu();
+        if (!isFreshStart) {
+            audioBehavior.PlaySound("Restart");
+        }
     }
 
     public void StartPlaying() {
@@ -91,7 +95,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
         uiManager.ShowUIHUD(true);
 
-        musicBehavior.PlayMusicInGame();
+        audioBehavior.PlayMusicInGame();
+        audioBehavior.PlaySound("Play");
+
+        randomSoundsBehavior.StartRandomSoundsPlaying();
     }
 
     public void StopPlaying() {
@@ -109,7 +116,17 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
         uiManager.ShowUIGameOver(true);
 
-        musicBehavior.PlayMusicMenu();
+        audioBehavior.PlayMusicMenu();
+        StartCoroutine(PlayGameOverSoundAfterDelay());
+
+        randomSoundsBehavior.StopRandomSoundsPlaying();
+    }
+
+    private IEnumerator PlayGameOverSoundAfterDelay() {
+
+        yield return new WaitForSeconds(1);
+
+        audioBehavior.PlaySound("GameOver");
     }
 
     private void SpawnNewEnemies(int count) {
@@ -189,6 +206,17 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         SpawnNewHeart(1);
     }
 
+    public void OnLifeChange(int life, int previousLife) {
+
+        uiManager.UpdateLife(life, previousLife, true);
+
+        if (previousLife > 0 && life > previousLife) {
+            audioBehavior.PlaySound("LifeGain");
+        } else if (life < previousLife) {
+            audioBehavior.PlaySound("LifeLose");
+        }
+    }
+
     public void OnBoostGaugeValueUpdate(float percentage) {
 
         if (!isPlaying) {
@@ -206,11 +234,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
 
         uiManager.ShowUICombo(true);
         uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, false);
+
+        audioBehavior.PlaySound("ComboStart");
     }
 
     public void OnComboDisabled() {
 
         uiManager.HideUICombo(true);
+
+        audioBehavior.PlaySound("ComboStop");
     }
 
     public void OnComboMultiplierChange() {
@@ -224,6 +256,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
             return;
         }
 
+        //add 1 point to score every second
         AddValueToScore(1, false);
     }
 
