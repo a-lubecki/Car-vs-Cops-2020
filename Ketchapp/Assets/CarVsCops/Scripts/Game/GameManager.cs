@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
     [SerializeField] private TimerBehavior scoreTimerBehavior = null;
     [SerializeField] private ComboBehavior comboBehavior = null;
     [SerializeField] private UIManager uiManager = null;
+    [SerializeField] private MusicBehavior musicBehavior = null;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         SetScore(0);
 
         uiManager.ShowUIOnboarding(true);
+
+        musicBehavior.PlayMusicMenu();
     }
 
     public void StartPlaying() {
@@ -87,6 +90,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         scoreTimerBehavior.StartTimer();
 
         uiManager.ShowUIHUD(true);
+
+        musicBehavior.PlayMusicInGame();
     }
 
     public void StopPlaying() {
@@ -103,6 +108,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, IBoos
         scoreTimerBehavior.StopTimer();
 
         uiManager.ShowUIGameOver(true);
+
+        musicBehavior.PlayMusicMenu();
     }
 
     private void SpawnNewEnemies(int count) {
