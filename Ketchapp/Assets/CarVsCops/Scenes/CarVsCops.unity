@@ -155,7 +155,7 @@ RectTransform:
   - {fileID: 66373914}
   - {fileID: 1190002694}
   m_Father: {fileID: 1439954858}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -428,7 +428,6 @@ GameObject:
   m_Component:
   - component: {fileID: 165770230}
   - component: {fileID: 165770229}
-  - component: {fileID: 165770228}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -436,14 +435,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &165770228
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165770227}
-  m_Enabled: 1
 --- !u!20 &165770229
 Camera:
   m_ObjectHideFlags: 0
@@ -531,7 +522,7 @@ Transform:
   m_Children:
   - {fileID: 165770230}
   m_Father: {fileID: 1293727471}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &198311177
 GameObject:
@@ -871,7 +862,7 @@ Transform:
   m_Children:
   - {fileID: 1328322717}
   m_Father: {fileID: 1293727471}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &529373295
 GameObject:
@@ -944,6 +935,45 @@ MonoBehaviour:
   colorFX1: {r: 0.9150943, g: 0.26678136, b: 0.20287468, a: 1}
   multiplierAnimationScale: 1.5
   multiplierAnimationColor: {r: 0.9433962, g: 0.32484868, b: 0.7990683, a: 1}
+--- !u!1 &541392028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541392029}
+  - component: {fileID: 541392030}
+  m_Layer: 0
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &541392029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541392028}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1293727471}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &541392030
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541392028}
+  m_Enabled: 1
 --- !u!1 &633725116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2272,7 @@ GameObject:
   - component: {fileID: 1061208348}
   - component: {fileID: 1061208347}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: ParticlesEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2255,12 +2285,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061208345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1439954858}
-  m_RootOrder: 0
+  m_Father: {fileID: 1293727471}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &1061208347
 ParticleSystemRenderer:
@@ -7447,7 +7477,7 @@ GameObject:
   - component: {fileID: 1293727471}
   - component: {fileID: 1293727470}
   m_Layer: 0
-  m_Name: MainCarFixedTracker
+  m_Name: TrackerPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7480,6 +7510,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 541392029}
+  - {fileID: 1061208346}
   - {fileID: 479219186}
   - {fileID: 187307357}
   m_Father: {fileID: 0}
@@ -7896,7 +7928,7 @@ GameObject:
   - component: {fileID: 1439954858}
   - component: {fileID: 1439954857}
   m_Layer: 0
-  m_Name: MainCarTracker
+  m_Name: TrackerPosRotActive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7929,7 +7961,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1061208346}
   - {fileID: 57634303}
   m_Father: {fileID: 0}
   m_RootOrder: 5
