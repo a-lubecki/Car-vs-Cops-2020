@@ -1,13 +1,14 @@
 using UnityEngine;
 
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour, IQuitGameBehaviorListener {
 
 
     [SerializeField] private UIOnboardingBehavior uiOnboardingBehavior = null;
     [SerializeField] private UIGameOverBehavior uiGameOverBehavior = null;
     [SerializeField] private UIHUDBehavior uiHudBehavior = null;
     [SerializeField] private UIComboBehavior uiComboBehavior = null;
+    [SerializeField] private BaseUIBehavior uiQuitBehavior = null;
 
 
     public void ShowUIOnboarding(bool animated) {
@@ -63,4 +64,14 @@ public class UIManager : MonoBehaviour {
         uiHudBehavior.UpdateTextScore(score, addedValue, animated);
     }
 
+    public void OnQuitModeEnabled() {
+
+        uiQuitBehavior.Show(true);
+    }
+
+    public void OnQuitModeDisabled() {
+
+        uiQuitBehavior.Hide(true);
+    }
+    
 }

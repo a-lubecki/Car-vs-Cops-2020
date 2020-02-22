@@ -2,7 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 
 
-public abstract class BaseUIBehavior : MonoBehaviour {
+public class BaseUIBehavior : MonoBehaviour {
 
 
     private CanvasGroup canvasGroup;
