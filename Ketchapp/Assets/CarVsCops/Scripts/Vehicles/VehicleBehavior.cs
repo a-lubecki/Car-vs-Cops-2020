@@ -8,15 +8,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
     [SerializeField] private LifeBehavior lifeBehavior = null;
     [SerializeField] private DamageParticlesBehavior damageParticlesBehavior = null;
 
-    protected Collider PhysicsCollider { get; private set; }
-    protected Collider TriggerCollider { get; private set; }
-
-
-    protected void Awake() {
-
-        PhysicsCollider = GetComponents<Collider>()[0];
-        TriggerCollider = GetComponents<Collider>()[1];
-    }
 
     protected void OnEnable() {
 
@@ -43,7 +34,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
     }
 
-    public void InitLife() {
+    public void InitVehicle() {
 
         SetInvincible(false);
 
@@ -117,7 +108,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         var goOther = collision.gameObject;
 
-        var vehicleBehavior = goOther.GetComponent<VehicleBehavior>();
+        var vehicleBehavior = goOther.GetComponentInParent<VehicleBehavior>();
         if (vehicleBehavior != null) {
             OnCollisionWithVehicle(vehicleBehavior);
         }

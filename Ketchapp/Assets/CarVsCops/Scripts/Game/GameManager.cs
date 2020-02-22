@@ -83,13 +83,13 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         isGameOver = false;
 
         carControlsManager.SetControlsEnabled(true);
-        mainCarBehavior.InitLife();
+        mainCarBehavior.InitVehicle();
 
         comboBehavior.SetComboEnabled(false);
 
-        SpawnNewEnemies(4);
-        SpawnNewObstacles(50);
-        SpawnNewHeart(1);
+        itemGeneratorBehavior.SpawnObstacles(50, this);
+        itemGeneratorBehavior.SpawnNewHearts(1, this, mainCarLifeBehavior);
+        SpawnNewEnemiesDependingOnScore(0, -1);
 
         scoreTimerBehavior.StartTimer();
 
@@ -129,19 +129,17 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         audioBehavior.PlaySound("GameOver");
     }
 
-    private void SpawnNewEnemies(int count) {
+    private void SpawnNewEnemiesDependingOnScore(int score, int previousScore) {
 
-        itemGeneratorBehavior.SpawnPoliceCars(count, this, goMainCar);
-    }
+        var enemyTypes = EnemyTypeFunctions.GetNewEnemiesToGenerate(score, previousScore);
+        if (enemyTypes == null) {
+            //no new enemies to generate
+            return;
+        }
 
-    private void SpawnNewObstacles(int count) {
-
-        itemGeneratorBehavior.SpawnObstacles(count, this);
-    }
-
-    private void SpawnNewHeart(int count) {
-
-        itemGeneratorBehavior.SpawnNewHearts(count, this, mainCarLifeBehavior);
+        foreach (var enemyType in enemyTypes) {
+            itemGeneratorBehavior.SpawnEnemy(enemyType, 1, this, goMainCar);
+        }
     }
 
     public void OnItemDestroyed(GameObject goItem, bool hasExploded) {
@@ -185,7 +183,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
             AddValueToScore(newScore, true);
         }
 
-        SpawnNewEnemies(1);
+        //respawn it
+        itemGeneratorBehavior.SpawnEnemy(enemyBehavior.EnemyType, 1, this, goMainCar);
     }
 
     private void OnObstacleDestroyed(ObstacleBehavior obstacleBehavior) {
@@ -194,7 +193,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
             return;
         }
 
-        SpawnNewObstacles(1);
+        //respawn it
+        itemGeneratorBehavior.SpawnObstacles(1, this);
     }
 
     private void OnHeartDestroyed(HeartBehavior heartBehavior) {
@@ -203,7 +203,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
             return;
         }
 
-        SpawnNewHeart(1);
+        //respawn it
+        itemGeneratorBehavior.SpawnNewHearts(1, this, mainCarLifeBehavior);
     }
 
     public void OnLifeChange(int life, int previousLife) {
@@ -269,6 +270,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
 
     private void AddValueToScore(int addedValue, bool displayAddedValue) {
 
+        var previousScore = scoreManager.Score;
+
         scoreManager.Score += addedValue;
 
         uiManager.UpdateScore(
@@ -276,6 +279,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
             displayAddedValue ? addedValue : 0,
             true
         );
+
+        SpawnNewEnemiesDependingOnScore(scoreManager.Score, previousScore);
     }
 
 }

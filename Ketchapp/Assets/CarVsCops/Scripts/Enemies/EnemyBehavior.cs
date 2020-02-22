@@ -5,12 +5,18 @@ public class EnemyBehavior : VehicleBehavior {
 
 
     [SerializeField] private ItemDestructorBehavior itemDestructorBehavior = null;
+    [SerializeField] private EnemyType enemyType = EnemyType.POLICE_CAR;
+
+    public EnemyType EnemyType {
+        get {
+            return enemyType;
+        }
+    }
 
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {
         //no specific update
     }
-
 
     protected override void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior) {
 

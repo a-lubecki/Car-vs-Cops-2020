@@ -14,11 +14,17 @@ public class MainCarBehavior : VehicleBehavior {
 
     protected override void UpdateInvincibilityDisplay(bool isInvincible) {
 
-        //chage to trigger instead of disabling so that the car will pass through the other
-        // cars and obstacles but with still detect the life items
-        PhysicsCollider.enabled = !isInvincible;
+        //if invincible, deactivate the physics colliders: the main car will pass through the enemies
+        //only trigger colliders will be activated to detect collectibles
+        foreach (var collider in GetComponentsInChildren<Collider>()) {
 
-        goModel.SetActive(!isInvincible);
+            if (!collider.isTrigger) {
+                collider.enabled = !isInvincible;
+            }
+        }
+
+        //disable the renderer instead of deactivating the GameObject to keep the colliders enabled
+        goModel.GetComponent<MeshRenderer>().enabled = !isInvincible;
         goModelFaded.SetActive(isInvincible);
     }
 
@@ -29,7 +35,7 @@ public class MainCarBehavior : VehicleBehavior {
         var camera = Camera.main;
         var initialCamPos = camera.transform.localPosition;
         var tween = camera.DOShakePosition(0.5f, 2, 20);
-        tween.OnKill(() => camera.transform.localPosition = initialCamPos);///TODO TEST
+        tween.OnKill(() => camera.transform.localPosition = initialCamPos);
     }
 
     protected override void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior) {

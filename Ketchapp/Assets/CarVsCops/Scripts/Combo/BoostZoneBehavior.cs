@@ -41,7 +41,7 @@ public class BoostZoneBehavior : MonoBehaviour {
 
         foreach (var go in objectsInZone) {
 
-            if (go.activeSelf && AreCollidersInZone(go)) {
+            if (go.activeSelf && AreEnemyCollidersInZone(go)) {
                 //the object can still call OnTriggerExit
                 continue;
             }
@@ -66,13 +66,13 @@ public class BoostZoneBehavior : MonoBehaviour {
         }
     }
 
-    private bool AreCollidersInZone(GameObject go) {
+    private bool AreEnemyCollidersInZone(GameObject go) {
 
         if (!go.activeSelf) {
             return false;
         }
 
-        foreach (var c in go.GetComponents<Collider>()) {
+        foreach (var c in go.GetComponentsInChildren<Collider>()) {
 
             if (c.isTrigger && zoneCollider.bounds.Intersects(c.bounds)) {
                 //object is still in zone
@@ -83,10 +83,14 @@ public class BoostZoneBehavior : MonoBehaviour {
         return false;
     }
 
+    private bool IsEnemy(Collider collider) {
+        return (collider.GetComponentInParent<EnemyBehavior>() != null);
+    }
+
     protected void OnTriggerEnter(Collider collider) {
 
-        if (collider.GetComponent<EnemyBehavior>() == null) {
-            //not an enemy
+        if (!IsEnemy(collider)) {
+            //boost only apply to collision with enemies
             return;
         }
 
@@ -99,8 +103,8 @@ public class BoostZoneBehavior : MonoBehaviour {
 
     protected void OnTriggerExit(Collider collider) {
 
-        if (collider.GetComponent<EnemyBehavior>() == null) {
-            //not an enemy
+        if (!IsEnemy(collider)) {
+            //boost only apply to collision with enemies
             return;
         }
 
