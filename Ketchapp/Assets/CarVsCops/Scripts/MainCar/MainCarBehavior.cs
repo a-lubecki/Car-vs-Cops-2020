@@ -24,10 +24,12 @@ public class MainCarBehavior : VehicleBehavior {
 
     private void HandleDamage() {
 
-        var hasLostLife = TryLoseLife(1);
-        if (hasLostLife) {
-            Camera.main.DOShakePosition(0.5f, 2, 20);
-        }
+        TryLoseLife(1);
+
+        var camera = Camera.main;
+        var initialCamPos = camera.transform.localPosition;
+        var tween = camera.DOShakePosition(0.5f, 2, 20);
+        tween.OnKill(() => camera.transform.localPosition = initialCamPos);///TODO TEST
     }
 
     protected override void OnCollisionWithVehicle(VehicleBehavior vehicleBehavior) {

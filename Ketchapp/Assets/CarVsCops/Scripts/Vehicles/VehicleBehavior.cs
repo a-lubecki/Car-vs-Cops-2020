@@ -53,7 +53,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
     }
 
     ///try to lose 1 life if not invincible then return true if the vehicle really lost 1 life
-    protected bool TryLoseLife(int value, bool forceLoseLife = false) {
+    protected void TryLoseLife(int value, bool forceLoseLife = false) {
 
         if (forceLoseLife) {
             SetInvincible(false);
@@ -61,7 +61,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
         if (lifeBehavior.isInvincible) {
             //nothing happens to the vehicle if invincible
-            return false;
+            return;
         }
 
         lifeBehavior.TryDecrementLife(value);
@@ -73,8 +73,6 @@ public abstract class VehicleBehavior : MonoBehaviour {
         }
 
         UpdateDamageParticles();
-
-        return true;
     }
 
     private IEnumerator SetInvincibleForDuration() {
