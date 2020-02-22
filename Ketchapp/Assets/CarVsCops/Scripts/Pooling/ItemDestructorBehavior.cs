@@ -43,11 +43,11 @@ public class ItemDestructorBehavior : MonoBehaviour {
         }
     }
 
-    public void ExplodeCurrentItem() {
+    public void ExplodeCurrentItem(Quaternion? overridenRotation = null) {
 
         //save position and rotation now as the item will be pooled
         var initialPos = transform.position;
-        var initialRot = transform.rotation;
+        var initialRot = overridenRotation.HasValue ? overridenRotation.Value : transform.rotation;
 
         bool hasDestroyed = TryDestroyCurrentItem(true);
 

@@ -6,9 +6,9 @@ public class ObstacleBehavior : MonoBehaviour {
     [SerializeField] private ItemDestructorBehavior itemDestructorBehavior = null;
 
 
-    public void Explode() {
+    public void Explode(Transform trInitiator) {
 
-        itemDestructorBehavior.ExplodeCurrentItem();
+        itemDestructorBehavior.ExplodeCurrentItem(trInitiator.rotation);
     }
 
 }

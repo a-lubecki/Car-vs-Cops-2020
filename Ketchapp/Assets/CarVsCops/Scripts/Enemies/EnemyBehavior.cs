@@ -24,7 +24,7 @@ public class EnemyBehavior : VehicleBehavior {
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
 
-        obstacleBehavior.Explode();
+        obstacleBehavior.Explode(transform);
 
         //more damages with an obstacle for more strategies + the enemy lose invincibility
         TryLoseLife(2, true);

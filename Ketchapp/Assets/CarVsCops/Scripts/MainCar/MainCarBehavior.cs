@@ -39,7 +39,7 @@ public class MainCarBehavior : VehicleBehavior {
 
     protected override void OnCollisionWithObstacle(ObstacleBehavior obstacleBehavior) {
 
-        obstacleBehavior.Explode();
+        obstacleBehavior.Explode(transform);
 
         HandleDamage();
     }
@@ -58,7 +58,7 @@ public class MainCarBehavior : VehicleBehavior {
 
         gameObject.SetActive(false);
 
-        //trigger game over when main car has exploded
+        //trigger gameover when main car has exploded
         gameManager.StopPlaying();
     }
 

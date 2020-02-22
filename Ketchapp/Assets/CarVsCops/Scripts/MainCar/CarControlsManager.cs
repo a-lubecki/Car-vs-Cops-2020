@@ -17,8 +17,9 @@ public class CarControlsManager : MonoBehaviour {
     }
 
 
-    public void SetControlsEnabled(bool controlsEnabled) {
-        this.controlsEnabled = controlsEnabled;
+    public void SetControlsEnabled(bool enabled) {
+
+        controlsEnabled = enabled;
     }
 
     protected void Update() {
@@ -55,7 +56,6 @@ public class CarControlsManager : MonoBehaviour {
 public interface ICarControlsManagerListener {
 
     void onLeftPressed();
-
     void onRightPressed();
 
 }
