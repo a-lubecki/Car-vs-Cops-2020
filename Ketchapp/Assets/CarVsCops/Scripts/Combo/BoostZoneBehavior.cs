@@ -24,8 +24,12 @@ public class BoostZoneBehavior : MonoBehaviour {
 
     protected void OnEnable() {
 
-        //deactivate gauge display when the car appear
-        SetGaugeActivated(false, false);
+        //disable zone display when the car appear
+        imageZone.DOKill();
+        
+        var c = imageZone.color;
+        c.a = 0;
+        imageZone.color = c;
     }
 
     protected void OnDisable() {

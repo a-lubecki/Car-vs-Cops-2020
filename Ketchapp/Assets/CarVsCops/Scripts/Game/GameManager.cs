@@ -216,6 +216,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
 
     public void OnLifeChange(int life, int previousLife) {
 
+        if (!isPlaying) {
+            return;
+        }
+
         uiManager.UpdateLife(life, previousLife, true);
 
         if (previousLife > 0 && life > previousLife) {
@@ -239,6 +243,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
     }
 
     public void OnComboEnabled() {
+
+        if (!isPlaying) {
+            return;
+        }
 
         uiManager.ShowUICombo(true);
         uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, false);
@@ -266,6 +274,10 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
     }
 
     public void OnComboMultiplierChange() {
+
+        if (!isPlaying) {
+            return;
+        }
 
         uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, true);
     }
