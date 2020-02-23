@@ -4774,7 +4774,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5544467c9df734a8c8c77ab2cd9d767d, type: 2}
+  - {fileID: 2100000, guid: 7cd6c1d1ce0c943ad831aafe367aeda7, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9595,7 +9595,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5544467c9df734a8c8c77ab2cd9d767d, type: 2}
+  - {fileID: 2100000, guid: 7cd6c1d1ce0c943ad831aafe367aeda7, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14559,7 +14559,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5544467c9df734a8c8c77ab2cd9d767d, type: 2}
+  - {fileID: 2100000, guid: 7cd6c1d1ce0c943ad831aafe367aeda7, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

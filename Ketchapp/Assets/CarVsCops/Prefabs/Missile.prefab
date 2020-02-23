@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBehavior: {fileID: 8344838630087152143}
   damageParticlesBehavior: {fileID: 3125894472465625177}
-  invincibilityDurationSec: 1
+  invincibilityDurationSec: 0.5
   itemDestructorBehavior: {fileID: 6038730782658386662}
   enemyType: 4
 --- !u!114 &7384620958272197415

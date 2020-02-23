@@ -5,7 +5,7 @@ using UnityEngine;
 public class ComboBehavior : MonoBehaviour {
 
 
-    private static readonly float COMBO_DURATION_SEC = 4;
+    private static readonly float COMBO_DURATION_SEC = 5;
 
 
     public GameObject goListener;
