@@ -17,6 +17,7 @@ public static class EnemyTypeFunctions {
         return Enum.GetValues(typeof(EnemyType)) as EnemyType[];
     }
 
+    ///an array containing all the enemies to generate by score threshold
     private static EnemyThreshold[] thresholds = new EnemyThreshold[] {
 
         new EnemyThreshold {
@@ -63,9 +64,9 @@ public static class EnemyTypeFunctions {
     public static EnemyType[] GetNewEnemiesToGenerate(int score, int previousScore) {
 
         foreach (var threshold in thresholds) {
-            //200 => 201
+
             if (previousScore < threshold.score && threshold.score <= score) {
-                //found
+                //the score has reached the threshold
                 return threshold.enemyTypes;
             }
         }
@@ -77,6 +78,7 @@ public static class EnemyTypeFunctions {
 }
 
 
+///a struct containg the enemy types to generate at a given score threshold
 public struct EnemyThreshold {
 
     public int score;
