@@ -25,7 +25,7 @@ public class EnemySpeedBehavior : MonoBehaviour {
         this.trTargetToFollow = trTargetToFollow ?? throw new ArgumentException();
 
         //randomize the distance so that the enemies will be more or less close to the target when they are on min speed
-        distanceFromTargetToActivateMaxSpeed = UnityEngine.Random.Range(30, 60);
+        distanceFromTargetToActivateMaxSpeed = UnityEngine.Random.Range(40, 90);
     }
 
     protected void Update() {
