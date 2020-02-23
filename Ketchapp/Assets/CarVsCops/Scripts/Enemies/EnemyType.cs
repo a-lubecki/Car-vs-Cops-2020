@@ -95,8 +95,8 @@ public static class EnemyTypeFunctions {
                 EnemyType.TANK,
                 EnemyType.MISSILE,
             },
-        },
-    };*/
+        },*/
+    };
 
     public static EnemyType[] GetNewEnemiesToGenerate(int score, int previousScore) {
 
