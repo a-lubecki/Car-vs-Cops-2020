@@ -37,7 +37,12 @@ public class TireTrailsBehavior : MonoBehaviour {
     private void SetTrailsEnabled(bool enabled) {
 
         foreach (var r in tireTrailRenderers) {
+
             r.enabled = enabled;
+
+            if (!enabled) {
+                r.Clear();
+            }
         }
     }
 

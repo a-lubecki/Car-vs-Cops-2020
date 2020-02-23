@@ -18,7 +18,7 @@ public static class EnemyTypeFunctions {
     }
 
     private static EnemyThreshold[] thresholds = new EnemyThreshold[] {
-/*
+
         new EnemyThreshold {
             score = 0,
             enemyTypes = new EnemyType[] {
@@ -56,12 +56,15 @@ public static class EnemyTypeFunctions {
                 EnemyType.TANK,
                 EnemyType.MISSILE,
             },
-        },*/
-
+        },
+/*
         new EnemyThreshold {///TODO TEST
             score = 0,
             enemyTypes = new EnemyType[] {
-                EnemyType.HELICOPTER
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
             },
         },
 
@@ -93,7 +96,7 @@ public static class EnemyTypeFunctions {
                 EnemyType.MISSILE,
             },
         },
-    };
+    };*/
 
     public static EnemyType[] GetNewEnemiesToGenerate(int score, int previousScore) {
 
