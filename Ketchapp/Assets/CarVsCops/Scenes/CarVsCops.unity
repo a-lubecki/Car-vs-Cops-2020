@@ -1927,6 +1927,7 @@ GameObject:
   - component: {fileID: 841414715}
   - component: {fileID: 841414717}
   - component: {fileID: 841414718}
+  - component: {fileID: 841414719}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1954,6 +1955,7 @@ MonoBehaviour:
   uiManager: {fileID: 1016323374}
   audioBehavior: {fileID: 1973113284}
   randomSoundsBehavior: {fileID: 640444853}
+  gameSaveBehavior: {fileID: 841414719}
 --- !u!4 &841414714
 Transform:
   m_ObjectHideFlags: 0
@@ -2023,6 +2025,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goListener: {fileID: 1016323369}
+--- !u!114 &841414719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841414712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3475ef156e3f14e5a9ab1052008a88a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 841414716}
 --- !u!1 &868063451
 GameObject:
   m_ObjectHideFlags: 0

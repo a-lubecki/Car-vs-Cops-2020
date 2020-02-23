@@ -24,6 +24,10 @@ public class ScoreManager : MonoBehaviour {
     public int MaxScore { get; private set; }
 
 
+    public void InitMaxScore(int maxScore) {
+        MaxScore = maxScore;
+    }
+
     private void UpdateMaxScore(int newScore) {
 
         if (newScore > MaxScore) {

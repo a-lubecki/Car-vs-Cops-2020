@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
     [SerializeField] private UIManager uiManager = null;
     [SerializeField] private AudioBehavior audioBehavior = null;
     [SerializeField] private RandomSoundsBehavior randomSoundsBehavior = null;
+    [SerializeField] private GameSaveBehavior gameSaveBehavior = null;
 
     private CarControlsManager carControlsManager;
     private MainCarBehavior mainCarBehavior;
@@ -124,6 +125,8 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         StartCoroutine(PlayGameOverSoundAfterDelay());
 
         randomSoundsBehavior.StopRandomSoundsPlaying();
+
+        gameSaveBehavior.SaveGame();
     }
 
     private IEnumerator PlayGameOverSoundAfterDelay() {
