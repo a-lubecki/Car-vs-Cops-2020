@@ -8,7 +8,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958619917328574184}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 8}
@@ -34,7 +34,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958619917328574184}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 8}
@@ -46,10 +46,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3330739975558968240, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 2300
+      objectReference: {fileID: 0}
     - target: {fileID: 176982949692950969, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_Name
       value: Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346674627945733201, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: m_RelativeForce.z
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 3760396660978039722, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
@@ -106,10 +116,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4017523224227832306, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5262071798526511162, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: enemyType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504940182398752452, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: maxRotationAnglePerSec
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e083a7090dba48c483685782986ffb8, type: 3}

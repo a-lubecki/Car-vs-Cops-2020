@@ -19,7 +19,7 @@ public static class EnemyTypeFunctions {
 
     private static EnemyThreshold[] thresholds = new EnemyThreshold[] {
 
-        new EnemyThreshold {
+        new EnemyThreshold {///TODO TEST
             score = 0,
             enemyTypes = new EnemyType[] {
                 EnemyType.POLICE_CAR,
@@ -28,6 +28,16 @@ public static class EnemyTypeFunctions {
                 EnemyType.POLICE_CAR,
             },
         },
+        /*
+        new EnemyThreshold {
+            score = 0,
+            enemyTypes = new EnemyType[] {
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
+                EnemyType.POLICE_CAR,
+            },
+        },*/
 
         new EnemyThreshold {
             score = 200,
@@ -57,45 +67,7 @@ public static class EnemyTypeFunctions {
                 EnemyType.MISSILE,
             },
         },
-/*
-        new EnemyThreshold {///TODO TEST
-            score = 0,
-            enemyTypes = new EnemyType[] {
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-            },
-        },
 
-        new EnemyThreshold {
-            score = 20,
-            enemyTypes = new EnemyType[] {
-                EnemyType.POLICE_VAN,
-            },
-        },
-
-        new EnemyThreshold {
-            score = 50,
-            enemyTypes = new EnemyType[] {
-                EnemyType.POLICE_VAN,
-            },
-        },
-
-        new EnemyThreshold {
-            score = 80,
-            enemyTypes = new EnemyType[] {
-                EnemyType.HELICOPTER,
-            },
-        },
-
-        new EnemyThreshold {
-            score = 120,
-            enemyTypes = new EnemyType[] {
-                EnemyType.TANK,
-                EnemyType.MISSILE,
-            },
-        },*/
     };
 
     public static EnemyType[] GetNewEnemiesToGenerate(int score, int previousScore) {

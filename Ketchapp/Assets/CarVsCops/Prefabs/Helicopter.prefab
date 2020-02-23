@@ -68,7 +68,7 @@ ConstantForce:
   m_GameObject: {fileID: 1874771138887165396}
   m_Enabled: 1
   m_Force: {x: 0, y: 0, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 900}
+  m_RelativeForce: {x: 0, y: 0, z: 650}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!114 &5425123319567450680
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBehavior: {fileID: 4728948584201485185}
   damageParticlesBehavior: {fileID: 1805700861168228823}
+  invincibilityDurationSec: 1
   itemDestructorBehavior: {fileID: 7035654566502134632}
   enemyType: 2
 --- !u!114 &6058813234295552681
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3969445437cf44cfc8359eb1908b79e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationAnglePerSec: 190
+  maxRotationAnglePerSec: 300
 --- !u!114 &5311598593225039933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +188,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 0
   DopplerLevel: 0.3
-  MinDistance: 10
-  MaxDistance: 50
+  MinDistance: 20
+  MaxDistance: 80
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -441,6 +442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193317879378787007, guid: fcc5311c448324c949c515e809f2602d,
+        type: 3}
+      propertyPath: m_UseCustomVertexStreams
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcc5311c448324c949c515e809f2602d, type: 3}

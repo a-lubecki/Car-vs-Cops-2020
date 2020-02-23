@@ -38,7 +38,8 @@ public class EnemyBehavior : VehicleBehavior {
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
 
-        collectibleBehavior.Destroy();
+        //removed to have a fairer game
+        //collectibleBehavior.Destroy();
     }
 
     protected override void OnVehicleExplosionRequired() {

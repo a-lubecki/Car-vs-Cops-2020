@@ -32,6 +32,7 @@ public class MainCarBehavior : VehicleBehavior {
 
         TryLoseLife(1);
 
+        //shake camera
         var camera = Camera.main;
         var initialCamPos = camera.transform.localPosition;
         var tween = camera.DOShakePosition(0.5f, 2, 20);
@@ -47,12 +48,15 @@ public class MainCarBehavior : VehicleBehavior {
 
         obstacleBehavior.Explode(transform);
 
-        HandleDamage();
+        //removed to have an easier game
+        //HandleDamage();
     }
 
     protected override void OnCollisionWithCollectible(CollectibleBehavior collectibleBehavior) {
 
-        collectibleBehavior.Collect();
+        if (lifeBehavior.Life < lifeBehavior.MaxLife) {
+            collectibleBehavior.Collect();
+        }
 
         //hearts collectibles refills life so update the smoke
         UpdateDamageParticles();

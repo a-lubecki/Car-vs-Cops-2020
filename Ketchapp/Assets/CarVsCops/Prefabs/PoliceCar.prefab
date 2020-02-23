@@ -38,7 +38,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b2b1b9270f00f4f70b088b93ca643dd9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -46,7 +46,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 0
   DopplerLevel: 0.3
-  MinDistance: 10
+  MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
@@ -204,6 +204,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3330739975558968240, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 1200
+      objectReference: {fileID: 0}
     - target: {fileID: 176982949692950969, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_Name
@@ -238,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 2346674627945733201, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_RelativeForce.z
-      value: 950
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 3346530181881115846, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}

@@ -5,8 +5,9 @@ using System.Collections;
 public abstract class VehicleBehavior : MonoBehaviour {
 
 
-    [SerializeField] private LifeBehavior lifeBehavior = null;
-    [SerializeField] private DamageParticlesBehavior damageParticlesBehavior = null;
+    [SerializeField] protected LifeBehavior lifeBehavior = null;
+    [SerializeField] protected DamageParticlesBehavior damageParticlesBehavior = null;
+    [SerializeField] protected float invincibilityDurationSec = 1;
 
 
     protected void OnEnable() {
@@ -71,7 +72,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
         SetInvincible(true);
 
         //set invincible for 3sec
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(invincibilityDurationSec);
 
         SetInvincible(false);
     }
@@ -84,7 +85,7 @@ public abstract class VehicleBehavior : MonoBehaviour {
 
     protected abstract void UpdateInvincibilityDisplay(bool isInvincible);
 
-    protected void UpdateDamageParticles() {
+    protected virtual void UpdateDamageParticles() {
 
         //show particles depending on life value
         var life = lifeBehavior.Life;

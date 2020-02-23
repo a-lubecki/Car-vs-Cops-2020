@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &4906802466054043909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033483666399964486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 5, z: 8}
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!65 &8640526710744586414
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033483666399964486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 5, z: 8}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!82 &1863098211672998844
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12,7 +38,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b2b1b9270f00f4f70b088b93ca643dd9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20,7 +46,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 0
   DopplerLevel: 0.3
-  MinDistance: 10
+  MinDistance: 5
   MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
@@ -96,32 +122,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &4906802466054043909
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033483666399964486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 5, z: 8}
-  m_Center: {x: 0, y: 2.5, z: 0}
---- !u!65 &8640526710744586414
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033483666399964486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 5, z: 8}
-  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1001 &7088203373613607980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: -3330739975558968240, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: maxSpeed
-      value: 1000
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 176982949692950969, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
@@ -162,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 2346674627945733201, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_RelativeForce.z
-      value: 950
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 3760396660978039722, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
@@ -233,6 +233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017523224227832306, guid: 6e083a7090dba48c483685782986ffb8,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5262071798526511162, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}

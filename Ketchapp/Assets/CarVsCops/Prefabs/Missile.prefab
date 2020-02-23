@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8730126454717066166}
   - component: {fileID: 6038730782658386662}
   - component: {fileID: 8344838630087152143}
-  - component: {fileID: 7140644284664434137}
+  - component: {fileID: -8126451766259317947}
   - component: {fileID: 7384620958272197415}
   - component: {fileID: 8924126669707643315}
   - component: {fileID: 3125894472465625177}
@@ -67,7 +67,7 @@ ConstantForce:
   m_GameObject: {fileID: 2912365789122202714}
   m_Enabled: 1
   m_Force: {x: 0, y: 0, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 900}
+  m_RelativeForce: {x: 0, y: 0, z: 850}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!114 &8730126454717066166
@@ -110,7 +110,7 @@ MonoBehaviour:
   goListener: {fileID: 0}
   maxLife: 3
   isInvincible: 0
---- !u!114 &7140644284664434137
+--- !u!114 &-8126451766259317947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,11 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2912365789122202714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0be058a14d3c14fa88f1a18c8d472c0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 61f7912fba3d8453cae6fdc74f9b87b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeBehavior: {fileID: 8344838630087152143}
   damageParticlesBehavior: {fileID: 3125894472465625177}
+  invincibilityDurationSec: 1
   itemDestructorBehavior: {fileID: 6038730782658386662}
   enemyType: 4
 --- !u!114 &7384620958272197415
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3969445437cf44cfc8359eb1908b79e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationAnglePerSec: 170
+  maxRotationAnglePerSec: 200
 --- !u!114 &8924126669707643315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7947043687228992052}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 9}
@@ -187,7 +188,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7947043687228992052}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 9}

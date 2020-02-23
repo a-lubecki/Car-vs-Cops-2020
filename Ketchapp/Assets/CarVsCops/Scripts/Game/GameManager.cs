@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILifeBehaviorListener,
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         if (!isFreshStart) {
             audioBehavior.PlaySound("Restart");
         }
+
+        //init the ground lines color
+        Camera.main.backgroundColor = Color.black;
     }
 
     public void StartPlaying() {
@@ -237,6 +241,15 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         uiManager.UpdateComboMultiplier(comboBehavior.ComboMultiplier, false);
 
         audioBehavior.PlaySound("ComboStart");
+
+        //shake camera
+        var camera = Camera.main;
+        var initialCamPos = camera.transform.localPosition;
+        var tween = camera.DOShakePosition(0.5f, 2, 20);
+        tween.OnKill(() => camera.transform.localPosition = initialCamPos);
+
+        //change the ground lines color
+        camera.DOColor(Color.white, 0.5f);
     }
 
     public void OnComboDisabled() {
@@ -244,6 +257,9 @@ public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILife
         uiManager.HideUICombo(true);
 
         audioBehavior.PlaySound("ComboStop");
+
+        //change the ground lines color
+        Camera.main.DOColor(Color.black, 0.5f);
     }
 
     public void OnComboMultiplierChange() {

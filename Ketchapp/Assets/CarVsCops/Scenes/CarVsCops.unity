@@ -445,7 +445,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9543,7 +9543,7 @@ PrefabInstance:
     - target: {fileID: 2346674627945733201, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
       propertyPath: m_RelativeForce.z
-      value: 830
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 3760396660978039722, guid: 6e083a7090dba48c483685782986ffb8,
         type: 3}
@@ -9661,6 +9661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBehavior: {fileID: 1970929115}
   damageParticlesBehavior: {fileID: 1970929114}
+  invincibilityDurationSec: 3
   gameManager: {fileID: 841414713}
   goModel: {fileID: 277828178}
   goModelFaded: {fileID: 308242339}
