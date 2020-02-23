@@ -18,7 +18,7 @@ public class TargetTrackerBehavior : MonoBehaviour {
         }
 
         if (mustTrackRotation) {
-            transform.localRotation = trTargetToFollow.localRotation;
+            transform.rotation = trTargetToFollow.rotation;
         }
 
         if (mustChildrenTrackActiveSelf) {

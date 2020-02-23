@@ -19,16 +19,6 @@ public static class EnemyTypeFunctions {
 
     private static EnemyThreshold[] thresholds = new EnemyThreshold[] {
 
-        new EnemyThreshold {///TODO TEST
-            score = 0,
-            enemyTypes = new EnemyType[] {
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-                EnemyType.POLICE_CAR,
-            },
-        },
-        /*
         new EnemyThreshold {
             score = 0,
             enemyTypes = new EnemyType[] {
@@ -37,7 +27,7 @@ public static class EnemyTypeFunctions {
                 EnemyType.POLICE_CAR,
                 EnemyType.POLICE_CAR,
             },
-        },*/
+        },
 
         new EnemyThreshold {
             score = 200,
