@@ -4,7 +4,7 @@ using DG.Tweening;
 
 
 public class GameManager : MonoBehaviour, IItemDestructorBehaviorListener, ILifeBehaviorListener,
-    IBoostGaugeBehaviorListener, IComboBehaviorListener, IScoreTimerManagerListener{
+    IBoostGaugeBehaviorListener, IComboBehaviorListener, IScoreTimerManagerListener {
 
 
     [SerializeField] private GameObject goMainCar = null;

@@ -26,7 +26,7 @@ public class BoostZoneBehavior : MonoBehaviour {
 
         //disable zone display when the car appear
         imageZone.DOKill();
-        
+
         var c = imageZone.color;
         c.a = 0;
         imageZone.color = c;

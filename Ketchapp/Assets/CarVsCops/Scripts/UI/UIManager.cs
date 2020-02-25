@@ -73,5 +73,5 @@ public class UIManager : MonoBehaviour, IQuitGameBehaviorListener {
 
         uiQuitBehavior.Hide(true);
     }
-    
+
 }

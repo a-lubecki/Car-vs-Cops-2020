@@ -13,7 +13,7 @@ public class UILifeBar : MonoBehaviour {
 
         int lifePos = life - 1;
 
-        for (int i = 0 ; i < hearts.Length ; i++) {
+        for (int i = 0; i < hearts.Length; i++) {
 
             if (i <= lifePos) {
                 //heart is shown

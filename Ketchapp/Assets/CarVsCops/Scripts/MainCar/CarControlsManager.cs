@@ -39,7 +39,7 @@ public class CarControlsManager : MonoBehaviour {
         }
 
         //handle long press arrows for debugging
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
             Listener?.onLeftPressed();
@@ -47,7 +47,7 @@ public class CarControlsManager : MonoBehaviour {
             Listener?.onRightPressed();
         }
 
-        #endif
+#endif
     }
 
 }

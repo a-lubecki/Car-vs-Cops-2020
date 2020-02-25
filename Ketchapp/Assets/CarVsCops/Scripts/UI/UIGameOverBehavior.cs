@@ -13,6 +13,6 @@ public class UIGameOverBehavior : BaseUIBehavior {
         base.UpdateUI(animated);
 
         textBestScore.text = scoreManager.MaxScore.ToString();
-     }
+    }
 
 }
